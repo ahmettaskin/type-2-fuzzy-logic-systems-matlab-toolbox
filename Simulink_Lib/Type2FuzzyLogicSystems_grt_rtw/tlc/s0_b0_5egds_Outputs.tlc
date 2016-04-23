@@ -1,0 +1,13 @@
+%implements s0_b0_5egds_Outputs "C"
+
+%function Outputs(block, system) Output
+%assign tlcOutputsFcnOfS0B2 = OpaqueTLCBlockFcn("Outputs", 0, 2, 0, 1)
+%<tlcOutputsFcnOfS0B2>\
+%<SLibInsertSolverResetCode()>\
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void Outputs(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 1, fcnProtoType)>
+%endfunction
