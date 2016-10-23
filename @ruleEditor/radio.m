@@ -1,4 +1,4 @@
-function obj = radio(obj)
+function obj = radio(~,~,obj)
 %RADÝO Summary of this function goes here
 %   Detailed explanation goes here
  thisradio=gcbo;

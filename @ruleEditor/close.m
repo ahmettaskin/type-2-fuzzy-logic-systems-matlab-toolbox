@@ -1,4 +1,4 @@
-function obj = close(obj)
+function obj = close(~,~,obj)
 %CLOSE Summary of this function goes here
 %   Detailed explanation goes here
 fig=  findall(0,'type','figure','Tag','ruleedit');

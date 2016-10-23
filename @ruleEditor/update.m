@@ -21,7 +21,7 @@ function obj = update(obj)
                     if numRules>0,
                         langHndl=findobj(figNumber,'Type','uimenu', 'Tag', 'lang', 'Checked','on');
                         lang=lower(get(langHndl,'Label'));
-                        labelStr=showrule2(fis,1:numRules,formatStr,lang);
+                        labelStr=showRule(obj,fis,1:numRules,formatStr,lang);
                     else
                         labelStr=' ';
                         msgStr=['No rules for system "' fisName '"'];

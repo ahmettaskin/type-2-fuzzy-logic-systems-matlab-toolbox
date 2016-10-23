@@ -1,4 +1,4 @@
-function obj = delete(obj)
+function obj = delete(~,~,obj)
 %DELETE Summary of this function goes here
 %   Detailed explanation goes here
    oldfis=get(gcbf, 'Userdata');
@@ -33,7 +33,7 @@ function obj = delete(obj)
                     lang=lower(get(langHndl,'Label'));
                     lang=deblank(lang);
                     lang=fliplr(deblank(fliplr(lang)));
-                    thisrule=showrule2(fis,1:length(fis.rule), formatStr, lang);
+                    thisrule=showRule(obj,fis,1:length(fis.rule), formatStr, lang);
                     set(ruleHndl,'String', thisrule, 'value', max(1, index-1));
    
 

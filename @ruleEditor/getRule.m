@@ -1,4 +1,4 @@
-function obj = getRule(obj)
+function obj = getRule(~,~,obj)
 %GETRULE Summary of this function goes here
 %   Detailed explanation goes here
                     index=get(gcbo, 'Value');

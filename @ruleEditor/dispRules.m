@@ -1,4 +1,4 @@
-function obj = dispRules(obj)
+function obj = dispRules(~,~,obj)
 %DÝSPRULES Summary of this function goes here
 %   Detailed explanation goes here
 %====================================
@@ -18,7 +18,7 @@ function obj = dispRules(obj)
                         editHndl=findobj(figNumber,'Tag', 'rulewindow');
                         langHndl=findobj(figNumber,'Type','uimenu','Tag', 'lang', 'Checked','on');
                         lang=lower(get(langHndl,'Label'));
-                        editStr=showrule2(fis,1:numRules,dispStyle,lang);
+                        editStr=showRule(obj,fis,1:numRules,dispStyle,lang);
                         % editStr=char([32*ones(size(editStr,1),1) editStr]);
                         set(editHndl,'String',editStr);
                     end
