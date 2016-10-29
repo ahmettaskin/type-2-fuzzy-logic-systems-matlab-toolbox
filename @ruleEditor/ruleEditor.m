@@ -6,13 +6,13 @@ classdef ruleEditor
     end
     
     methods
-        function obj = ruleEditor(action) 
-            if nargin<1,
-                newFis=newfis('Untitled');
-                newFis=addvar(newFis,'input','input1',[0 1],'init');
-                newFis=addvar(newFis,'output','output1',[0 1],'init');
-                action=newFis;
-            end
+        function obj = ruleEditor(action)
+            %             if nargin<1,
+            %                 newFis=newfis('Untitled');
+            %                 newFis=addvar(newFis,'input','input1',[0 1],'init');
+            %                 newFis=addvar(newFis,'output','output1',[0 1],'init');
+            %                 action=newFis;
+            %             end
             
             ruleeditor = findall(0,'type','figure','Tag','ruleedit');
             if ~isempty(ruleeditor) && isequal(action,'initilaize')
@@ -20,40 +20,40 @@ classdef ruleEditor
                 return
             end
             
-            if isstr(action),
-                if action(1)~='#',
-                    % The string "action" is not a switch for this function,
-                    % so it must be a disk file
-                    % fis=readfis(action);
-                    figNumber=gcf;
-                    fis=helper.getAppdata;
-                    action='#initialize';
-                end
-            else
-                % For initialization, the fis matrix is passed in as the parameter
-                fis=action;
-                action='#initialize';
-            end;
+            %             if isstr(action),
+            %                 if action(1)~='#',
+            %                     % The string "action" is not a switch for this function,
+            %                     % so it must be a disk file
+            %                     % fis=readfis(action);
+            %                     figNumber=gcf;
+            %                     fis=helper.getAppdata;
+            %                     action='#initialize';
+            %                 end
+            %             else
+            %                 % For initialization, the fis matrix is passed in as the parameter
+            %                 fis=action;
+            %                 action='#initialize';
+            %             end;
             
-            fisName=fis.name;
-            fisType=fis.type;
+            %             fisName=fis.name;
+            %             fisType=fis.type;
             
-            if isprop(fis, 'input')
-                numInputs=length(fis.input);
-            else
-                numInputs=0;
-            end
-            if isprop(fis, 'output')
-                numOutputs=length(fis.output);
-            else
-                numOutputs=0;
-            end
+            %             if isprop(fis, 'input')
+            %                 numInputs=length(fis.input);
+            %             else
+            %                 numInputs=0;
+            %             end
+            %             if isprop(fis, 'output')
+            %                 numOutputs=length(fis.output);
+            %             else
+            %                 numOutputs=0;
+            %             end
             
-            if isprop(fis, 'rule')
-                numRules=length(fis.rule);
-            else
-                numRules=0;
-            end
+            %             if isprop(fis, 'rule')
+            %                 numRules=length(fis.rule);
+            %             else
+            %                 numRules=0;
+            %             end
             %===================================
             % Information for all objects
             frmColor=192/255*[1 1 1];
@@ -71,7 +71,7 @@ classdef ruleEditor
             
             %====================================
             % The FIGURE
-            thisfis{1}=fis;
+            thisfis{1}=helper.getAppdata;
             figNumber=figure( ...
                 'Name',['Rule Editor'], ...
                 'NumberTitle','off', ...
@@ -122,13 +122,13 @@ classdef ruleEditor
             %------------------------------------
             % The RULES edit window
             rulePos=[left top-(top-bottom)*2/5-border (right-left) (top-bottom)*2/5];
-            if numRules>0,
-                labelStr=' ';
-            else
-                labelStr=' ';
-                msgStr=['No rules for system "' fisName '"'];
-                statmsg(figNumber,msgStr);
-            end
+            %             if numRules>0,
+            %                 labelStr=' ';
+            %             else
+            %                 labelStr=' ';
+            %                 msgStr=['No rules for system "' fisName '"'];
+            %                 statmsg(figNumber,msgStr);
+            %             end
             name='rulewindow';
             pos=[left bottom btnWid*2 btnHt];
             ruleHndl=uicontrol( ...
@@ -177,14 +177,21 @@ classdef ruleEditor
                 'Max', 1,...
                 'Callback',{@radio obj});
             %=====weight text=================
+            frmPos=[left*9 bottom ...
+                (btnWid+spacing)*0.8 btnHt*2.6];
+            clsFrmHndl=uicontrol( ...
+                'Style','frame', ...
+                'Units','normal', ...
+                'Position',frmPos, ...
+                'BackgroundColor',frmColor);
             pos=[left+(btnWid)+btnHt/2+spacing bottom+btnHt*2 btnWid*.7 btnHt];
             helpHndl=uicontrol( ...
                 'Style','text', ...
                 'Units','normal', ...
                 'Position',pos, ...
                 'BackgroundColor',frmColor, ...
-                'String','Weight:');
-            pos=[left+btnWid+btnHt bottom btnWid/2 btnHt];
+                'String','Weight');
+            pos=[left+btnWid+btnHt bottom*1.4 btnWid/2 btnHt];
             helpHndl=uicontrol( ...
                 'Style','edit', ...
                 'Units','normal', ...
@@ -201,10 +208,10 @@ classdef ruleEditor
                 'Style','pushbutton', ...
                 'Units','normal', ...
                 'Position',pos, ...
-                'String','Delete rule',...
-                'Callback', {@delete obj},...
+                'BackgroundColor',btnColor, ...
+                'String','Clear all rules',...
+                'Callback', {@clear obj},...
                 'Tag', 'delete');
-            
             %========button for add=========
             pos=[left+boxDstn*3 bottom btnWid btnHt];
             helpHndl=uicontrol( ...
@@ -224,82 +231,28 @@ classdef ruleEditor
             
             frmBorder=spacing;
             
-            %====================================
-            % The STATUS frame
-            bottom=border+spacing;
-            top=bottom+btnHt;
-            right=maxRight-border-spacing;
-            left=border+spacing;
-            frmBorder=spacing;
-            frmPos=[left-frmBorder bottom-frmBorder ...
-                (right-left)*2/3+frmBorder*2 top-bottom+frmBorder*2];
-            mainFrmHndl=uicontrol( ...
-                'Style','frame', ...
-                'Units','normal', ...
-                'Position',frmPos, ...
-                'BackgroundColor',frmColor);
-            
-            frmPos=[left-frmBorder+(right-left)*2/3+frmBorder*3 bottom-frmBorder ...
-                (right-left)*1/3-frmBorder top-bottom+frmBorder*2];
-            mainFrmHndl=uicontrol( ...
-                'Style','frame', ...
-                'Units','normal', ...
-                'Position',frmPos, ...
-                'BackgroundColor',frmColor);
-            
-            %------------------------------------
-            % The STATUS text window
-            labelStr=['FIS Name: ' fisName];
-            name='status';
-            pos=[left bottom (right-left)/2 btnHt];
-            txtHndl=uicontrol( ...
-                'Style','text', ...
-                'BackgroundColor',frmColor, ...
-                'HorizontalAlignment','left', ...
-                'Units','normal', ...
-                'Position',pos, ...
-                'Tag',name, ...
-                'String',labelStr);
-            %------------------------------------
-            % The HELP button
-            %    bottom=bottom+spacing;
-            %         labelStr='Help';
-            %         callbackStr={@help obj};
-            %         helpHndl=uicontrol( ...
-            %             'Style','push', ...
-            %             'Units','normal', ...
-            %             'Position',[right-2*btnWid-spacing bottom btnWid btnHt], ...
-            %             'BackgroundColor',btnColor, ...
-            %             'String',labelStr, ...
-            %             'Callback',callbackStr);
-            
-            %------------------------------------
             %The CLOSE button
-            labelStr='Close';
-            callbackStr='fisgui #close';
             closeHndl=uicontrol( ...
                 'Style','push', ...
                 'Units','normal', ...
                 'Position',[right-btnWid bottom btnWid btnHt], ...
                 'BackgroundColor',btnColor, ...
-                'String',labelStr, ...
+                'String','Close', ...
                 'Callback',{@close obj});
             update(obj);
-            
             % Normalize all coordinates
             hndlList=findobj(figNumber,'Units','pixels');
             set(hndlList,'Units','normalized');
             
             % Uncover the figure
-            thisfis{1}=fis;
-            set(figNumber, ...
-                'Visible','on', ...
-                'UserData',thisfis, ...
-                'HandleVisibility','callback');
-            
+            %             thisfis{1}=helper.getAppdata;
+            %             set(figNumber, ...
+            %                 'Visible','on', ...
+            %                 'UserData',thisfis, ...
+            %                 'HandleVisibility','callback');
             %%init
-            index=1;
-            localGetRule(obj, figNumber, index, fis);
+            %             index=1;
+            %             localGetRule(obj, figNumber, index, helper.getAppdata);
         end
     end
 end
