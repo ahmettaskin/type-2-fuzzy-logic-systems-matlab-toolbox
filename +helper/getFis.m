@@ -146,7 +146,7 @@ switch nargin
                 out=[];
                 for i=1:numInputs
                     for j=1:length(fis.input(i).mf)
-                        out=strvcat(out, fis.input(i).mf(2*j).name);
+                        out=strvcat(out, fis.input(i).mf(2*j).name(1:end-1));
 %                         out=out(1:end-1);
                     end
                 end

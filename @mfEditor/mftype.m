@@ -21,7 +21,7 @@ end
 %====================================
 figNumber=gcf;
 HandlInterval = findobj('Tag', 'CheckboxInterval');
-helper.isInterval=get(HandlInterval,'value');
+isInterval=get(HandlInterval,'value');
 %   mfTypeHndl=get(figNumber,'CurrentObject');
 mfTypeHndl=gcbo;
 fis=helper.getAppdata;
@@ -74,7 +74,7 @@ if strcmp(fisType,'sugeno') & strcmp(varType,'output'),
     oldParams=fis.(varType)(varIndex).mf(currMF).params;
     if strcmp(newType,'constant'),
         % Pick off only the constant term
-        if  helper.isInterval
+        if  isInterval
             newParamsUpper=oldParams(length(oldParams));
             fis.(varType)(varIndex).mf(currMF).type=newType;
             fis.(varType)(varIndex).mf(currMF).params=newParamsUpper;
@@ -87,7 +87,7 @@ if strcmp(fisType,'sugeno') & strcmp(varType,'output'),
     else % linear to be improved
         fis.(varType)(varIndex).mf(currMF).type=newType;
         %if length(oldParams)==2
-        %if helper.isInterval
+        %if isInterval
         fis.(varType)(varIndex).mf(currMF).params=[zeros(1,numInputs) oldParams(1)];
         for k=1:numInputs
             fis.(varType)(varIndex).mf(currMF).params(2,k)=0;

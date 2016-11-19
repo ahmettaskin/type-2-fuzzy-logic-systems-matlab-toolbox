@@ -1,40 +1,33 @@
-function [outStr,obj] = showRule(obj,fis,ruleIndex,ruleFormat,lang)
+function [outStr,obj] = showRule(obj,fis,ruleIndex)
 %SHOWRULE Summary of this function goes here
 %   Detailed explanation goes here
 % Uncomment the line below that corresponds to your language of choice
-if nargin<4||isempty(lang),
-    %lang='francais';
-    %lang='deutsch';
-    %lang='svenska';
-    lang='english';
-end
-
 numInputs=length(fis.input);
 numOutputs=length(fis.output);
 for i=1:length(fis.input)
- numInputMFs(i)=length(fis.input(i).mf);
+    numInputMFs(i)=length(fis.input(i).mf);
 end
-totalInputMFs=sum(numInputMFs);
+% totalInputMFs=sum(numInputMFs);
 for i=1:length(fis.output)
- numOutputMFs(i)=length(fis.output(i).mf);
+    numOutputMFs(i)=length(fis.output(i).mf);
 end
-totalOutputMFs=sum(numOutputMFs);
+% totalOutputMFs=sum(numOutputMFs);
 numRules=length(fis.rule);
 
 if nargin<2,
     ruleIndex=1:numRules;
 end
-if nargin<3 || isempty(ruleFormat)
-    ruleFormat='verbose';
-end
+
+ruleFormat='verbose';
+
 
 % Error checking
 if any(ruleIndex<=0),
-    error('Rule number must be positive'); 
+    error('Rule number must be positive');
 end
 
 if any(ruleIndex>numRules),
-    error(['There are only ',num2str(numRules),' rules']); 
+    error(['There are only ',num2str(numRules),' rules']);
 end
 
 if numRules<1,
@@ -43,53 +36,27 @@ if numRules<1,
     return
 end
 
-if any(ruleIndex-floor(ruleIndex)), 
-    error('Illegal rule number'); 
+if any(ruleIndex-floor(ruleIndex)),
+    error('Illegal rule number');
 end
-    
+
 if strcmp(ruleFormat,'verbose') | strcmp(ruleFormat,'symbolic'),
     inLabels=helper.getFis(fis,'inLabels');
-    inMFLabels=helper.getFis(fis,'inMFLabels');    
+    inMFLabels=helper.getFis(fis,'inMFLabels');
     outLabels=helper.getFis(fis,'outLabels');
     outMFLabels=helper.getFis(fis,'outMFLabels');
-
+    
     % Establish appropriate typographical symbols
     lftParen='(';
     rtParen=')';
-    if strcmp(ruleFormat,'verbose'),
-        if strcmp(lang,'english'),
-            ifStr='If ';
-            andStr=' and ';
-            orStr=' or ';
-            thenStr='then ';
-            equalStr=' is ';
-            isStr=' is ';
-            isnotEqualStr=' is not ';
-        elseif strcmp(lang,'francais'),
-            ifStr='Si ';
-            andStr=' et ';
-            orStr=' ou ';
-            thenStr='alors ';
-            equalStr=' est ';
-            isStr=' est ';
-            isnotEqualStr=' n''est_pas ';
-        elseif strcmp(lang,'deutsch'),
-            ifStr='Wenn ';
-            andStr=' und ';
-            orStr=' oder ';
-            thenStr='dann ';
-            equalStr=' ist ';
-            isStr=' ist ';
-            isnotEqualStr=' ist nicht ';
-        elseif strcmp(lang,'svenska'),
-            ifStr='Om ';
-            andStr=' och ';
-            orStr=' eller ';
-            thenStr='innebar_att ';
-            equalStr=' aer ';
-            isStr=' aer ';
-            isnotEqualStr=' aer inte ';
-        end
+    if strcmp(ruleFormat,'verbose')
+        ifStr='If ';
+        andStr=' and ';
+        orStr=' or ';
+        thenStr='then ';
+        equalStr=' is ';
+        isStr=' is ';
+        isnotEqualStr=' is not ';
     elseif strcmp(ruleFormat,'symbolic'),
         ifStr='';
         andStr=' & ';
@@ -100,23 +67,23 @@ if strcmp(ruleFormat,'verbose') | strcmp(ruleFormat,'symbolic'),
         isnotEqualStr='~=';
     else
         % rule index version here (not complete yet)
-
+        
     end
-
+    
     ruleList=helper.getFis(fis,'ruleList');
     inputRules=ruleList(:,1:numInputs);
-
+    
     for n=1:length(ruleIndex),
         rule=ruleList(ruleIndex(n),:);
         ruleWt=rule(numInputs+numOutputs+1);
         fuzzyOpCode=rule(numInputs+numOutputs+2);
         if fuzzyOpCode==1,
-        opStr=andStr;
+            opStr=andStr;
         elseif fuzzyOpCode==2,
             opStr=orStr;
         end
         wtStr=[lftParen num2str(ruleWt) rtParen];
-
+        
         ruleStr1=ifStr;
         for inCount=1:numInputs,
             % Begin with the construction of the antecedent
@@ -141,7 +108,7 @@ if strcmp(ruleFormat,'verbose') | strcmp(ruleFormat,'symbolic'),
                 end
             end
         end
-
+        
         % Now display the consequent
         opFlag=1;
         ruleStr2=thenStr;
@@ -163,14 +130,14 @@ if strcmp(ruleFormat,'verbose') | strcmp(ruleFormat,'symbolic'),
                 end
             end
         end
-
+        
         if n==1,
             outStr=[num2str(ruleIndex(n)) '. ' ruleStr1 ' ' ruleStr2 ' ' wtStr];
         else
             outStr=str2mat(outStr,[num2str(ruleIndex(n)) '. ' ...
                 ruleStr1 ' ' ruleStr2 ' ' wtStr]);
         end
-
+        
     end    % for n=1:length(ruleIndex) ...
     
 elseif strcmp(ruleFormat,'indexed'),
@@ -194,7 +161,7 @@ elseif strcmp(ruleFormat,'indexed'),
         ruleStr=[ruleStr '(' num2str(ruleList(rule,numInputs+numOutputs+1)) ') '];
         % Fuzzy operator code
         ruleStr=[ruleStr ': ' num2str(ruleList(rule,numInputs+numOutputs+2)) ' '];
-
+        
         if n==1,
             outStr=ruleStr;
         else

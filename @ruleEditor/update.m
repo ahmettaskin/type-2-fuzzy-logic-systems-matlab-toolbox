@@ -9,19 +9,13 @@ figNumber=gcf;
 fis=helper.getAppdata;
 numRules=length(fis.rule);
 fisName=fis.name;
-
-% The RULES FORMAT menu
-popupHndl=findobj(figNumber,'Type','uimenu','Tag','rulefrmt', 'Checked','on');
-formatStr=lower(get(popupHndl,'Label'));
-formatStr=deblank(formatStr);
-formatStr=fliplr(deblank(fliplr(formatStr)));
 % The RULES edit window
 name='rulewindow';
 hndl=findobj(figNumber,'Type','uicontrol','Tag',name);
 if numRules>0,
     langHndl=findobj(figNumber,'Type','uimenu', 'Tag', 'lang', 'Checked','on');
     lang=lower(get(langHndl,'Label'));
-    labelStr=showRule(obj,fis,1:numRules,formatStr,lang);
+    labelStr=showRule(obj,fis,1:numRules);
 else
     labelStr=' ';
     msgStr=['No rules for system "' fisName '"'];

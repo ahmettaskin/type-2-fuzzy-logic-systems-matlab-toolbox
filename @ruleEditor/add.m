@@ -90,15 +90,9 @@ if errflag==0;
         set(delHndl, 'Enable', 'on');
     end
     helper.setAppdata(fis)
-    formatHndl=findobj(gcbf,'Type','uimenu','Tag','rulefrmt', 'Checked','on');
-    formatStr=lower(get(formatHndl,'Label'));
-    formatStr=deblank(formatStr);
-    formatStr=fliplr(deblank(fliplr(formatStr)));
-    langHndl=findobj(gcbf,'Type','uimenu', 'Tag', 'lang', 'Checked','on');
-    lang=lower(get(langHndl,'Label'));
-    lang=deblank(lang);
-    lang=fliplr(deblank(fliplr(lang)));
-    thisrule=showRule(obj,fis,1:length(fis.rule), formatStr, lang);
+    %formatHndl=findobj(gcbf,'Type','uimenu','Tag','rulefrmt', 'Checked','on');
+    %langHndl=findobj(gcbf,'Type','uimenu', 'Tag', 'lang', 'Checked','on');
+    thisrule=showRule(obj,fis,1:length(fis.rule));
     set(ruleHndl,'String', thisrule, 'value', index);
     statusHndl=findobj(gcbf, 'Tag', 'status');
     set(statusHndl, 'String', ['The rule is ' statusStr]);
