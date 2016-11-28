@@ -25,7 +25,7 @@ function [ obj ] = addVar( obj, varargin )
         % Now replot the FIS diagram
         % First delete all axes except for the main one
         axHndlList=findobj(figNumber,'Type','axes');
-        mainAxHndl=findobj(figNumber,'Type','axes','Tag','mainaxes');
+        mainAxHndl=findobj(figNumber,'Type','axes','Tag','mainaxesmain');
         axHndlList(find(axHndlList==mainAxHndl))=[];
         delete(axHndlList);
         lineHndlList=findobj(figNumber,'Type','line');

@@ -16,10 +16,15 @@ for i = 1:numel(currLineHndl)
     Y{i,1} = get(currLineHndl(i),'YData');
     
 end
-for i = 1:2:numel(currLineHndl)    
+for i = 1:2:numel(currLineHndl)
     TestX=[X{i},fliplr(X{i+1})];
     TestY=[Y{i},fliplr(Y{i+1})];
-    fill(TestX(1:end),TestY(1:end), [0.5 0.5 0.5],'facealpha',.5)
+    if helper.isNewGraphics
+        fill(TestX(1:end),TestY(1:end), [0.5 0.5 0.5],'facealpha',.5,...
+            'PickableParts','none');
+    else
+        fill(TestX(1:end),TestY(1:end), [0.5 0.5 0.5],'facealpha',.5);
+    end
 end
 hold off;
 

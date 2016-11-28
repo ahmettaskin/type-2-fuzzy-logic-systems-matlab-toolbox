@@ -1,14 +1,20 @@
-function obj=saveFile(~,~,obj,cmd)
+function obj=saveFile(obj,cmd,~)
 
 %% Ask user to save or not while closing toolbox
 if nargin==3
-    cmd='save';
+    try
+    cmd.EventName='save'; 
+    end
 end
 tagList={'fuzzyt2',...
     'mfEditor',...
     'ruleedit',...
     'mfAddDlg'};
-if strcmpi(cmd,'close')
+if isempty(cmd)
+cmd.EventName='close';
+end
+
+if strcmpi(cmd.EventName,'close')
     answer=questdlg('Do you want to save your current design before close ?',...
         'Close Toolbox','Yes','No','Yes');
     if isequal(answer,'No')
