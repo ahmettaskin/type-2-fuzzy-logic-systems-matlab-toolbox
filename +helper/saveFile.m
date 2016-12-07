@@ -3,15 +3,18 @@ function obj=saveFile(obj,cmd,~)
 %% Ask user to save or not while closing toolbox
 if nargin==3
     try
-    cmd.EventName='save'; 
+        cmd.EventName='save'; 
     end
 end
 tagList={'fuzzyt2',...
     'mfEditor',...
     'ruleedit',...
     'mfAddDlg'};
-if isempty(cmd)
-cmd.EventName='close';
+if isempty(cmd) && isstruct(cmd)
+    cmd.EventName='close';
+else
+    clear cmd;
+    cmd.EventName='save'; 
 end
 
 if strcmpi(cmd.EventName,'close')
