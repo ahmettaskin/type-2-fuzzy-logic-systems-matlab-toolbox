@@ -10,9 +10,9 @@ tagList={'fuzzyt2',...
     'mfEditor',...
     'ruleedit',...
     'mfAddDlg'};
-if isempty(cmd) && isstruct(cmd)
+if isempty(cmd)
     cmd.EventName='close';
-else
+elseif  ~isstruct(cmd) && ~isobject(cmd)
     clear cmd;
     cmd.EventName='save'; 
 end
