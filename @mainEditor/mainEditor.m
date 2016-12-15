@@ -22,7 +22,7 @@ classdef mainEditor
                 figure(hfuzzyt2)
                 return
             end
-            selectColor=[1 0.3 0.3];  
+            selectColor=[1 0.3 0.3];
             hFuzzy = figure('Color',[0.8 0.8 0.8], ...
                 'MenuBar','none', ...
                 'NumberTitle','off', ...
@@ -333,7 +333,6 @@ classdef mainEditor
             % Type Reduction pop-up
             labelStr=str2mat('KM','EKM','IASC','EIASC','EODS','WM','NT','BMM','custom');
             name='typeredMethod';
-            callbackStr='fuzzytype2(''config'')';
             pos=[FigLeft+0.3 top-4*step LenghtH LenghtV];
             hndl=uicontrol( ...
                 'Style','popupmenu', ...
@@ -341,7 +340,7 @@ classdef mainEditor
                 'HorizontalAlignment','left', ...
                 'Units','Normalized', ...
                 'Position',pos, ...
-                'Callback',callbackStr, ...
+                'Callback',@config, ...
                 'Tag',name, ...
                 'String',labelStr);
             
@@ -381,3 +380,30 @@ classdef mainEditor
     
 end
 
+function [ obj ] = config( ~,~,obj )
+%CONFÝG Summary of this function goes here
+%   Detailed explanation goes here
+figNumber=gcf;
+
+fis=helper.getAppdata;
+
+TRmethods = get(findobj('tag','typeredMethod'),'String');
+TRmethodsval = get(findobj('tag','typeredMethod'),'Value');
+
+newTRmethod = deblank(TRmethods(TRmethodsval,:));
+if strcmp(newTRmethod,'BMM')
+    prompt={'alpha','beta'};
+    name='Enter alfa and beta';
+    numlines=1;
+    defaultanswer={'0.5','0.5'};
+    answer=inputdlg(prompt,name,numlines,defaultanswer);
+    drawnow;
+    
+    fis.typeRedMethod=[newTRmethod '(' answer{1} ',' answer{2} ')'];
+else
+    fis.typeRedMethod=newTRmethod;
+end
+helper.setAppdata(fis);
+
+
+end
