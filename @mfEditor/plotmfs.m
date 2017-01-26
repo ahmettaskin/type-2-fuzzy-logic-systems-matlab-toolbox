@@ -388,18 +388,30 @@ if plot_mfs == 1
             hndl=findobj(figNumber,'Type','uimenu','Tag','removemf');
             set(hndl,'Enable','on');
         else % Output
-            hndl=findobj(figNumber, 'Tag','mfparams');
-            set(hndl,'String',[' ' mat2str(mfParamsUpper(1),4)],'Enable','on', ...
-                'Userdata', [curr_info(1,1) mfParamsUpper(1)]);
-            
-            hndl=findobj(figNumber, 'Tag','mfparams2');
-            set(hndl,'String',[' ' mat2str(mfParamsUpper(2),4)],'Enable','on', ...
-                'Userdata', [curr_info(1,1) mfParamsUpper(2)]);
-            
-            hndl=findobj(figNumber,'Type','uimenu','Tag','removemf');
-            set(hndl,'Enable','on');
-        end
-        
+            if strcmpi(mfTypeUpper, 'linear')
+                hndl=findobj(figNumber, 'Tag','mfparams');
+                set(hndl,'String',[' ' mat2str(mfParamsUpper(1:end/2),4)],'Enable','on', ...
+                    'Userdata', [curr_info(1,1) mfParamsUpper(1:end/2)]);
+
+                hndl=findobj(figNumber, 'Tag','mfparams2');
+                set(hndl,'String',[' ' mat2str(mfParamsUpper(end/2+1:end),4)],'Enable','on', ...
+                    'Userdata', [curr_info(1,1) mfParamsUpper(end/2+1:end)]);
+
+                hndl=findobj(figNumber,'Type','uimenu','Tag','removemf');
+                set(hndl,'Enable','on');         
+            else
+                hndl=findobj(figNumber, 'Tag','mfparams');
+                set(hndl,'String',[' ' mat2str(mfParamsUpper(1),4)],'Enable','on', ...
+                    'Userdata', [curr_info(1,1) mfParamsUpper(1)]);
+
+                hndl=findobj(figNumber, 'Tag','mfparams2');
+                set(hndl,'String',[' ' mat2str(mfParamsUpper(2),4)],'Enable','on', ...
+                    'Userdata', [curr_info(1,1) mfParamsUpper(2)]);
+
+                hndl=findobj(figNumber,'Type','uimenu','Tag','removemf');
+                set(hndl,'Enable','on');               
+            end
+        end        
     end
     % Reset the remove all mfs menuitem
     hndl=findobj(figNumber,'Type','uimenu','Tag','removeallmf');

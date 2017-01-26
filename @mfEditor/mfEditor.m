@@ -853,7 +853,14 @@ for ii=1:2
         end
     elseif ii==2
         if isequal(varType,'output')
-            newParamsUse(1,2)=newParamsLower;
+            try
+                newParamsUse(1,2)=newParamsLower;
+            catch
+                for kk=1:length(newParamsLower)
+                    newParamsUse(2,kk) = newParamsLower(kk);                   
+                end
+                
+            end
         elseif ~helper.isInt(currMF/2) % Upper Membership Function
             newParamsUse=newParamsLower;
             currMF=currMF+1;
@@ -885,7 +892,6 @@ for ii=1:2
             % Nothing to do for sugeno output case...
             EditedMF.params = newParamsUse;
             fis = subsasgn(fis,RefStruct,EditedMF);
-            helper.setAppdata(fis);
         else
             lineHndl=findobj(mainAxes,'Type','line','UserData',currMF);
             x=get(lineHndl,'XData');
@@ -915,10 +921,12 @@ for ii=1:2
         end
     end
 end
+helper.setAppdata(fis);
 set(HandlParamsUpper,'String',[' ' mat2str(newParamsUpper,4)]);
 set(HandlParamsLower,'String',[' ' mat2str(newParamsLower,4)]);
 statmsg(figNumber,msgStr);
 obj=fill('','',obj);
+
 
 end
 
