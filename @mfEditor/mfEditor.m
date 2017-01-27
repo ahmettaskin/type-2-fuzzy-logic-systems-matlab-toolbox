@@ -1,7 +1,4 @@
 classdef mfEditor
-    %MFEDÝTOR Summary of this class goes here
-    %   Detailed explanation goes here
-    
     properties
     end
     
@@ -734,27 +731,7 @@ end
 end
 
 function obj=gridAxs(~,~,obj,cmd)
-%GRID
-%
-% SYNTAX:
-%     grid(...)
-%
-% INPUTS:
-%
-% OUTPUTS:
-%
-% EXAMPLE :
-%
-% See also
-
-% Copyright (c) AVL Software and Functions GmbH 2014
-% $Revision: 1.10 $, $Date: 2014/02/19 10:20:06VET $ by $Author: Dalon Thierry RGB (DALONT) $
-
-% Calls:
 figNumber=gcf;
-
-
-
 HandlGridOn = findobj('Tag', 'gridon');
 HandlGridOff = findobj('Tag', 'gridoff');
 fis=helper.getAppdata;
@@ -777,9 +754,6 @@ end
 end
 
 function obj = mfparams( ~,~,obj )
-%MFPARAMS Summary of this function goes here
-%   Detailed explanation goes here
-%====================================
 %% colors
 selectColor=[1 0 0];
 inputColor=[1 1 0.93];

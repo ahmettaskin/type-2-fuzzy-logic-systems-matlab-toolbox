@@ -1,21 +1,4 @@
 function [yLeft,yRight,L,R]=t2f_TR_EIASC(F,Y)
-%T2F_TR_EKM
-%
-% SYNTAX:
-%     t2f_TR_KM(...)
-%
-% INPUTS:
-%
-% OUTPUTS:
-%
-% EXAMPLE :
-%
-% See also
-
-% Copyright (c) Istanbul Technical University Control Engineering 2014
-% $Revision: 1.10 $, $Date: 2014/02/19 10:20:06VET $ by $Author: Ahmet Taskin $
-
-% Calls:
 %% EIASC Algorithm for Computing Y Left
 
 % Sort Y matrix
@@ -74,12 +57,9 @@ while(1)
     R=R-1;
     % Step 3.
     if yr>=upperY(R)
-       R=R;
-       yRight=yr;
-    break
-   end
+        R=R;
+        yRight=yr;
+        break
+    end
     
 end
-
-
-

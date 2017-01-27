@@ -1,7 +1,4 @@
 function [outStr,obj] = showRule(obj,fis,ruleIndex)
-%SHOWRULE Summary of this function goes here
-%   Detailed explanation goes here
-% Uncomment the line below that corresponds to your language of choice
 numInputs=length(fis.input);
 numOutputs=length(fis.output);
 for i=1:length(fis.input)
@@ -173,4 +170,3 @@ else
 end
 
 end
-

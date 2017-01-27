@@ -1,7 +1,4 @@
 function obj = plotFis( obj )
-%PLOTFÝS Summary of this function goes here
-%   Detailed explanation goes here
-%=============================
 selectColor = [1 0.3 0.3];
 figNumber=gcf;
 fis=helper.getAppdata;

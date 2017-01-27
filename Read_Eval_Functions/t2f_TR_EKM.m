@@ -1,21 +1,4 @@
 function [yLeft,yRight,L,R]=t2f_TR_EKM(F,Y)
-%T2F_TR_EKM
-%
-% SYNTAX:
-%     t2f_TR_KM(...)
-%
-% INPUTS:
-%
-% OUTPUTS:
-%
-% EXAMPLE :
-%
-% See also
-
-% Copyright (c) Istanbul Technical University Control Engineering 2014
-% $Revision: 1.10 $, $Date: 2014/02/19 10:20:06VET $ by $Author: Ahmet Taskin $
-
-% Calls:
 %% EKM Algorithm for Computing Y Left
 
 % a) Sort Y matrix
@@ -110,5 +93,3 @@ while(1)
         r=russu;
     end
 end
-
-

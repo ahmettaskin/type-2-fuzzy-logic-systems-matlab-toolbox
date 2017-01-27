@@ -1,5 +1,4 @@
 function viewSurface
-
 %% If opened close and reopen again to refresh
 hSurface=findobj(0,'tag','surface');
 if ~isempty(hSurface)
@@ -40,9 +39,6 @@ if diffRange1<=0 || diffRange2<=0
     warndlg('Please check your range for inputs','Wrong Range Input')
     return
 end
-
-
-
 Input1=RangeInp1(1):(diffRange1/plotpoints):RangeInp1(2);
 Input2=RangeInp2(1):(diffRange2/plotpoints):RangeInp2(2);
 

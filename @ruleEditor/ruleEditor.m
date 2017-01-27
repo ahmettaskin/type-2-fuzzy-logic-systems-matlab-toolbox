@@ -1,7 +1,4 @@
 classdef ruleEditor
-    %RULEEDÝTOR Summary of this class goes here
-    %   Detailed explanation goes here
-    
     properties
     end
     
@@ -12,14 +9,12 @@ classdef ruleEditor
             %                 newFis=addvar(newFis,'input','input1',[0 1],'init');
             %                 newFis=addvar(newFis,'output','output1',[0 1],'init');
             %                 action=newFis;
-            %             end
-            
+            %             end 
             ruleeditor = findall(0,'type','figure','Tag','ruleedit');
             if ~isempty(ruleeditor) && isequal(action,'initilaize')
                 figure(ruleeditor);
                 return
             end
-            
             %             if isstr(action),
             %                 if action(1)~='#',
             %                     % The string "action" is not a switch for this function,

@@ -1,21 +1,4 @@
 function [yLeft,yRight,L,R]=t2f_TR_IASC(F,Y)
-%T2F_TR_EKM
-%
-% SYNTAX:
-%     t2f_TR_KM(...)
-%
-% INPUTS:
-%
-% OUTPUTS:
-%
-% EXAMPLE :
-%
-% See also
-
-% Copyright (c) Istanbul Technical University Control Engineering 2014
-% $Revision: 1.10 $, $Date: 2014/02/19 10:20:06VET $ by $Author: Ahmet Taskin $
-
-% Calls:
 %% IASC Algorithm for Computing Y Left
 
 % Sort Y matrix
@@ -43,12 +26,12 @@ while(1)
     
     % Step 3.
     if c>=yl
-       L=l-1;
-       yLeft=yl;
-    break
+        L=l-1;
+        yLeft=yl;
+        break
     else
         yl=c;
-   end
+    end
     
 end
 
@@ -79,14 +62,11 @@ while(1)
     
     % Step 3.
     if c<=yr
-       R=r-1;
-       yRight=yr;
-    break
+        R=r-1;
+        yRight=yr;
+        break
     else
         yr=c;
-   end
+    end
     
 end
-
-
-

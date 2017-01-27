@@ -1,7 +1,5 @@
 function tf=setCrispInterval(cmd)
-
 figNumber=gcf;
-
 %% Upper Membership Function Handles
 % Name String Upper
 HandlNameUpperstr=findobj('String','Name ');
@@ -193,7 +191,7 @@ switch cmd
             'position',[0.7,0.26,0.09,0.04])
         set(HandlCrispText,'visible','on')
         return
-    case 'iscrisp'        
+    case 'iscrisp'
         crispval=get(HandlCrisp,'value');
         if crispval
             tf=true;

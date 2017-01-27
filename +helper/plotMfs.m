@@ -1,8 +1,8 @@
 function [xOut,yOut,x2Out,y2Out]=plotMfs(fis,varType,varIndex,numPts)
 %PLOTMF Display all of the membership functions for a given variable.
 %   PLOTMF(fismat,varType,varIndex) plots all of the membership functions
-%   in the FIS called fismat associated with a given variable whose type 
-%   (input or output) and index are respectively given by varType and 
+%   in the FIS called fismat associated with a given variable whose type
+%   (input or output) and index are respectively given by varType and
 %   varIndex. This function can also be used with the MATLAB function
 %   subplot.
 %
@@ -24,7 +24,7 @@ function [xOut,yOut,x2Out,y2Out]=plotMfs(fis,varType,varIndex,numPts)
 %   See also EVALMF, PLOTFIS.
 
 %   Ned Gulley, 10-30-94, Kelly Liu  7-11-96
-%   Copyright 1994-2002 The MathWorks, Inc. 
+%   Copyright 1994-2002 The MathWorks, Inc.
 %   $Revision: 1.17.2.1 $  $Date: 2010/12/27 01:12:54 $
 
 %====================================
@@ -37,19 +37,19 @@ if ~strcmp(varType,'input') & (~strcmp(varType,'output') | strcmp(fisType,'sugen
 end
 
 if strcmp(varType, 'input')
- if isfield(fis.input(varIndex), 'mf')
-   numMFs=size(fis.input(varIndex).mf, 2);
- else
-   numMFs = 0;
- end
- var=fis.input(varIndex);
+    if isfield(fis.input(varIndex), 'mf')
+        numMFs=size(fis.input(varIndex).mf, 2);
+    else
+        numMFs = 0;
+    end
+    var=fis.input(varIndex);
 else
- if isfield(fis.output(varIndex), 'mf')
-   numMFs=size(fis.output(varIndex).mf, 2);
- else
-   numMFs=0;
- end
- var=fis.output(varIndex);
+    if isfield(fis.output(varIndex), 'mf')
+        numMFs=size(fis.output(varIndex).mf, 2);
+    else
+        numMFs=0;
+    end
+    var=fis.output(varIndex);
 end
 
 y=zeros(numPts,numMFs);
@@ -57,20 +57,20 @@ y2=zeros(numPts,numMFs);
 xPts=linspace(var.range(1),var.range(2),numPts)';
 %%tip1
 x=xPts(:,ones(numMFs,1));
-for mfIndex=1:numMFs,    
+for mfIndex=1:numMFs,
     mfType=var.mf(1,mfIndex).type;
     mfParams=var.mf(1,mfIndex).params;
-    y(:,mfIndex)=mfParams(end)*helper.evalmf2(xPts,mfParams(1:end-1),mfType); 
+    y(:,mfIndex)=mfParams(end)*helper.evalmf2(xPts,mfParams(1:end-1),mfType);
 end
 %%tip2
-for mfIndex=1:numMFs,    
+for mfIndex=1:numMFs,
     mfType=var.mf(2,mfIndex).type;
     mfParams=var.mf(2,mfIndex).params;
     y2(:,mfIndex)=mfParams(end)*helper.evalmf2(xPts,mfParams(1:end-1),mfType);
 end
 if nargout<1,
     plot(x,y)
-
+    
     xlabel(var.name,'FontSize',10);
     ylabel('Degree of membership','FontSize',10)
     axis([var.range(1) var.range(2) -0.1 1.1])

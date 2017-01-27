@@ -1,9 +1,4 @@
 function obj = update(obj)
-%UPDATE Summary of this function goes here
-%   Detailed explanation goes here
-
-%====================================
-
 figNumber=gcf;
 
 fis=helper.getAppdata;
@@ -82,4 +77,3 @@ if isprop(fis, 'input') & isprop(fis, 'output')
     end
 end
 end
-

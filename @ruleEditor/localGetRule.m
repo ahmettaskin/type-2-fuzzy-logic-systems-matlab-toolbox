@@ -1,7 +1,4 @@
 function obj = localGetRule(obj, figNumber, index, fis)
-%LOCALGETRULE Summary of this function goes here
-%   Detailed explanation goes here
-
 if isprop(fis, 'input')
     numInputs=length(fis.input);
 else
@@ -74,7 +71,6 @@ for i=1:numOutputs
         end
         set(Hndl, 'Value', rulevarindex);
     end
-
+    
 end
 end
-

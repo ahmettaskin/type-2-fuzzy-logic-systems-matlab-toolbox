@@ -1,15 +1,14 @@
 function createSim(fileName,pathName)
-
 % Open simulink
 simulink;
 
 % Specify the name of the model to create
- prompt={'Simulink file name:'};
-    name='T2FIS';
-    numlines=1;
-    defaultanswer={'My_Interval_Type_2_Model'};
-    answer=inputdlg(prompt,name,numlines,defaultanswer);
-    drawnow;
+prompt={'Simulink file name:'};
+name='T2FIS';
+numlines=1;
+defaultanswer={'My_Interval_Type_2_Model'};
+answer=inputdlg(prompt,name,numlines,defaultanswer);
+drawnow;
 fname = answer{1};
 
 % Check if the file already exists and delete it if it does
@@ -53,14 +52,14 @@ for i=1:nInputs
     add_block('built-in/Constant', [fname,'/Input ' num2str(i)],...
         'Position', [140 15+70*i 170 45+70*i],...
         'SampleTime','-1');
-%     if i>1
-%         % Add Input to the Subsystem
-%         add_block('simulink/Ports & Subsystems/In1', [fname,'/In' num2str(i)],...
-%             'Position', [140 15+70*i 170 45+70*i],...
-%             'SampleTime','0');
-%     end
+    %     if i>1
+    %         % Add Input to the Subsystem
+    %         add_block('simulink/Ports & Subsystems/In1', [fname,'/In' num2str(i)],...
+    %             'Position', [140 15+70*i 170 45+70*i],...
+    %             'SampleTime','0');
+    %     end
     % Connect the input to the mux
-%      add_line(fname,['Input ' num2str(i) '/1'],['Interval Type-2 Fuzzy Logic Controller/' num2str(i)])
+    %      add_line(fname,['Input ' num2str(i) '/1'],['Interval Type-2 Fuzzy Logic Controller/' num2str(i)])
     add_line(fname,['Input ' num2str(i) '/1'],['Mux/' num2str(i)])
 end
 

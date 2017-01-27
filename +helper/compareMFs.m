@@ -1,5 +1,4 @@
 function tf=compareMFs(t2fis,ParamsLower,ParamsUpper,currMF,VarType,varIndex)
-
 if nargin==1
     cmd='add';
 else
@@ -45,7 +44,7 @@ switch cmd
                 if ParamsLower>ParamsUpper
                     tf=1; return
                 else
-                    tf=0;return                
+                    tf=0;return
                 end
             elseif strcmpi(mfType,'linear')
                 tf=0;

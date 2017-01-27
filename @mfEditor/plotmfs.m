@@ -1,29 +1,9 @@
 function [ obj ] = plotmfs( obj )
-%PLOTMFS Summary of this function goes here
-%   Detailed explanation goes here
-%         figNumber=gcf;
-%         mainAxes=findobj(figNumber,'Tag','mainaxes');
-%         axes(mainAxes);
-%         [x,y]=plotmships;
-%
-%
-%         line(x,y, ...
-%             'Color',[0 0 0], ...
-%             'LineWidth',1, ...
-%             'UserData',1, ...
-%             'Tag', 'mfline',...
-%             'ButtonDownFcn',{@localSelectmf [1 0 0]})
-
 %% colors
-figColor=[0.9 0.9 0.9];
-frmColor=192/255*[1 1 1];
-editColor=255/255*[1 1 1];
 selectColor=[1 0 0];
 unselectColor=[0 0 0];
 inputColor=[1 1 0.93];
 outputColor=[0.8 1 1];
-tickColor=[0.5 0.5 0.5];
-popupColor=192/255*[1 1 1];
 figNumber=gcf;
 fis=helper.getAppdata;
 % Find the selected variable
@@ -392,36 +372,33 @@ if plot_mfs == 1
                 hndl=findobj(figNumber, 'Tag','mfparams');
                 set(hndl,'String',[' ' mat2str(mfParamsUpper(1:end/2),4)],'Enable','on', ...
                     'Userdata', [curr_info(1,1) mfParamsUpper(1:end/2)]);
-
+                
                 hndl=findobj(figNumber, 'Tag','mfparams2');
                 set(hndl,'String',[' ' mat2str(mfParamsUpper(end/2+1:end),4)],'Enable','on', ...
                     'Userdata', [curr_info(1,1) mfParamsUpper(end/2+1:end)]);
-
+                
                 hndl=findobj(figNumber,'Type','uimenu','Tag','removemf');
-                set(hndl,'Enable','on');         
+                set(hndl,'Enable','on');
             else
                 hndl=findobj(figNumber, 'Tag','mfparams');
                 set(hndl,'String',[' ' mat2str(mfParamsUpper(1),4)],'Enable','on', ...
                     'Userdata', [curr_info(1,1) mfParamsUpper(1)]);
-
+                
                 hndl=findobj(figNumber, 'Tag','mfparams2');
                 set(hndl,'String',[' ' mat2str(mfParamsUpper(2),4)],'Enable','on', ...
                     'Userdata', [curr_info(1,1) mfParamsUpper(2)]);
-
+                
                 hndl=findobj(figNumber,'Type','uimenu','Tag','removemf');
-                set(hndl,'Enable','on');               
+                set(hndl,'Enable','on');
             end
-        end        
+        end
     end
     % Reset the remove all mfs menuitem
     hndl=findobj(figNumber,'Type','uimenu','Tag','removeallmf');
     set(hndl,'Enable','on');
-    
-    
 end
 end
 %%% localgetmfparam %%%
-
 function out = localgetmfparam(fis, varType, varNum, mfNum, param)
 switch varType
     case 'input'

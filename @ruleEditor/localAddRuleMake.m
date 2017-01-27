@@ -1,6 +1,4 @@
 function obj = localAddRuleMake(obj,fis)
-%LOCALADDRULEMAKE Summary of this function goes here
-%   Detailed explanation goes here
 if isprop(fis, 'input')
     numInputs=length(fis.input);
 else
@@ -75,7 +73,7 @@ for i=0:numInputs-1
         'Tag',name);
     textPos=rulePos+[0, boxHeight+spacing, 0, btnHt*2/3-boxHeight];
     name=['ruleinlabel' num2str(i+1)];
-
+    
     textHndl=uicontrol( ...
         'Style','text', ...
         'Units','normal', ...
@@ -84,14 +82,14 @@ for i=0:numInputs-1
         'String', [fis.input(i+1).name ' is'],...
         'HorizontalAlignment','center', ...
         'Tag',name);
-
+    
     textPos=rulePos+[0, boxHeight+spacing+btnHt*2/3, 0, btnHt*2/3-boxHeight];
     name=['ruleinkeyw' num2str(i+1)];
     if i==0
         strname='If';
     else
         strHndl=findobj(gcf, 'Tag', 'radio');
-
+        
         if get(strHndl(1), 'Value')==1
             strname=get(strHndl(1), 'String');
         else
@@ -106,7 +104,7 @@ for i=0:numInputs-1
         'String', strname,...
         'HorizontalAlignment','left', ...
         'Tag',name);
-
+    
     pos=rulePos+[0, -btnHt, 0, btnHt-boxHeight];
     helpHndl=uicontrol( ...
         'Style','checkbox', ...
@@ -118,7 +116,7 @@ for i=0:numInputs-1
         'Tag', ['ruleinradio' num2str(i+1)],...
         'Max', 1,...
         'Value', 0);
-
+    
 end
 endedge=left+(numInputs+numOutputs)*boxDstn+boxWidth;
 if endedge>maxRight-left
@@ -144,7 +142,7 @@ if endedge>maxRight-left
             'Tag',name);
         textPos=rulePos+[0, boxHeight+spacing, 0, btnHt*2/3-boxHeight];
         name=['ruleoutlabel' num2str(i+1)];
-
+        
         textHndl=uicontrol( ...
             'Style','text', ...
             'Units','normal', ...
@@ -153,19 +151,19 @@ if endedge>maxRight-left
             'String', [fis.output(i+1).name ' is'],...
             'HorizontalAlignment','center', ...
             'Tag',name);
-
+        
         textPos=rulePos+[0, boxHeight+spacing+btnHt*2/3, 0, btnHt*2/3-boxHeight];
         name=['ruleoutkeyw' num2str(i+1)];
         if i==0
             strname='Then';
         else
-            strname='and';            
-%             strHndl=findobj(gcf, 'Tag', 'radio');
-%             if get(strHndl(1), 'Value')==1
-%                 strname=get(strHndl(1), 'String');
-%             else
-%                 strname=get(strHndl(2), 'String');
-%             end
+            strname='and';
+            %             strHndl=findobj(gcf, 'Tag', 'radio');
+            %             if get(strHndl(1), 'Value')==1
+            %                 strname=get(strHndl(1), 'String');
+            %             else
+            %                 strname=get(strHndl(2), 'String');
+            %             end
         end
         textHndl=uicontrol( ...
             'Style','text', ...
@@ -175,8 +173,8 @@ if endedge>maxRight-left
             'String', strname,...
             'HorizontalAlignment','left', ...
             'Tag',name);
-
-
+        
+        
         pos=rulePos+[0, -btnHt, 0, btnHt-boxHeight];
         helpHndl=uicontrol( ...
             'Style','checkbox', ...
@@ -188,7 +186,7 @@ if endedge>maxRight-left
             'Tag', ['ruleoutradio' num2str(i+1)],...
             'Max', 1,...
             'Value', 0);
-
+        
     end
 else
     for i=1:numOutputs
@@ -212,7 +210,7 @@ else
             'Tag',name);
         textPos=rulePos+[0, boxHeight+spacing, 0, btnHt*2/3-boxHeight];
         name=['ruleoutlabel' num2str(outIndex-i)];
-
+        
         textHndl=uicontrol( ...
             'Style','text', ...
             'Units','normal', ...
@@ -221,19 +219,19 @@ else
             'String', [fis.output(outIndex-i).name ' is'],...
             'HorizontalAlignment','center', ...
             'Tag',name);
-
+        
         textPos=rulePos+[0, boxHeight+spacing+btnHt*2/3, 0, btnHt*2/3-boxHeight];
         name=['ruleoutkeyw' num2str(outIndex-i)];
         if numOutputs==i
             strname='Then';
         else
             strname='and';
-%             strHndl=findobj(gcf, 'Tag', 'radio');
-%             if get(strHndl(1), 'Value')==1
-%                 strname=get(strHndl(1), 'String');
-%             else
-%                 strname=get(strHndl(2), 'String');
-%             end
+            %             strHndl=findobj(gcf, 'Tag', 'radio');
+            %             if get(strHndl(1), 'Value')==1
+            %                 strname=get(strHndl(1), 'String');
+            %             else
+            %                 strname=get(strHndl(2), 'String');
+            %             end
         end
         textHndl=uicontrol( ...
             'Style','text', ...
@@ -243,8 +241,8 @@ else
             'String', strname,...
             'HorizontalAlignment','left', ...
             'Tag',name);
-
-
+        
+        
         pos=rulePos+[0, -btnHt, 0, btnHt-boxHeight];
         helpHndl=uicontrol( ...
             'Style','checkbox', ...
@@ -256,8 +254,7 @@ else
             'Tag', ['ruleoutradio' num2str(outIndex-i)],...
             'Max', 1,...
             'Value', 0);
-
+        
     end
-
+    
 end
-

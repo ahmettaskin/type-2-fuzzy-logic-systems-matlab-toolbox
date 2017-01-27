@@ -1,7 +1,4 @@
-classdef it2flsSession
-    %IT2FLSSSESSÝON Summary of this class goes here
-    %   Detailed explanation goes here
-    
+classdef it2flsSession  
     properties (Access = public)
         name;
         type;

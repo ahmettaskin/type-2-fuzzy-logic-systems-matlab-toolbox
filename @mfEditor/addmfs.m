@@ -1,15 +1,5 @@
 function [ obj ] = addmfs( ~,~,obj )
-
-%% colors
-figColor=[0.9 0.9 0.9];
-frmColor=192/255*[1 1 1];
-editColor=255/255*[1 1 1];
 selectColor=[1 0 0];
-unselectColor=[0 0 0];
-inputColor=[1 1 0.93];
-outputColor=[0.8 1 1];
-tickColor=[0.5 0.5 0.5];
-popupColor=192/255*[1 1 1];
 %% Remove all Membership functions before adding
 answer=questdlg({'Current Membership Functions will be deleted.',...
     ' ',...
@@ -40,4 +30,3 @@ hndl=findobj(figNumber,'Type','uimenu','Tag','removeallmf');
 set(hndl,'Enable','on');
 obj=plotmfs(obj);
 end
-

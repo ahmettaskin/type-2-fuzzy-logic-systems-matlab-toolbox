@@ -26,14 +26,14 @@ function out=addVar_t2(it2fls,varType,varName,varRange,varargin)
 %   	MFLabels =
 %   	Range = [0 10]
 %
-%   See also 
+%   See also
 %   addmf, addrules, rmmf, rmvar
 
 %   The argument varagin = 'init' is a flag to create a default set of
 %   three membership functions.
 
 %   Kelly Liu, 7-10-96,   N. Hickey,27-02-01
-%   Copyright 1994-2002 The MathWorks, Inc. 
+%   Copyright 1994-2002 The MathWorks, Inc.
 %   $Revision: 1.30.2.1 $  $Date: 2009/04/21 03:19:27 $
 
 out=it2fls;
@@ -61,7 +61,7 @@ if strcmp(lower(varType),'input'),
     out.input(index).name=varName;
     out.input(index).range=varRange;
     
-    if nargin == 5 & isempty(out.input(index).mf) 
+    if nargin == 5 & isempty(out.input(index).mf)
         % Create default input membership functions
         out.input(index).mf = struct('name',cell(2,3),'type','trimf','params',[]);
         for id = 1:3
@@ -69,15 +69,15 @@ if strcmp(lower(varType),'input'),
             out.input(index).mf(1,id).params = [-1.8+da -1+da -0.2+da 1];
             da = da + 1;
         end
-%         % Create type2 membersihp functions
+        %         % Create type2 membersihp functions
         da=0;
         for id = 1:3
             out.input(index).mf(2,id).name   = sprintf('mf%iL',id);
             out.input(index).mf(2,id).params = [-1.6+da -1+da -0.4+da 0.7];
             da = da + 1;
         end
-
-
+        
+        
     end
     
     % newly added: for sugeno type, the length of output linear MF params
@@ -119,7 +119,7 @@ elseif strcmp(lower(varType),'output'),
     out.output(index).name=varName;
     out.output(index).range=varRange;
     
-    if nargin == 5 & isempty(out.output(index).mf) 
+    if nargin == 5 & isempty(out.output(index).mf)
         if strcmp(it2fls.type,'mamdani')
             % Create default output membership functions
             out.output(index).mf = struct('name',cell(1,3),'type','trimf','params',[]);
@@ -141,10 +141,9 @@ elseif strcmp(lower(varType),'output'),
     end
     % Need to insert a new column into the current rules list
     if numrules
-        % Don't bother if there aren't any rules     
+        % Don't bother if there aren't any rules
         for i=1:numrules
             out.rule(i).consequent(index)=0;
         end
-    end   
-    
+    end
 end

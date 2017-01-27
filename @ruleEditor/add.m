@@ -1,6 +1,4 @@
 function obj = add(~,~,obj)
-%ADD Summary of this function goes here
-%   Detailed explanation goes here
 thisact=get(gcbo, 'String');
 fis=helper.getAppdata;
 

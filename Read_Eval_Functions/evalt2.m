@@ -1,5 +1,4 @@
 function y = evalt2 (input,t2fis,TRMethod)
-
 if nargin==0
     prompt={'T2FIS file:','Inputs:'};
     name='EvalT2';
@@ -49,7 +48,7 @@ if nargin == 3
     t2fis=t2fisstruct;
     
     if TRMethod==0
-       
+        
     elseif TRMethod==1
         t2fis.typeRedMethod='KM';
     elseif TRMethod==2

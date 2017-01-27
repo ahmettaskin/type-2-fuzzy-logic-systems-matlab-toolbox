@@ -1,18 +1,5 @@
 function [ obj ] = removeallmfs( ~,~,obj )
-%REMOVEALLMFS Summary of this function goes here
-%   Detailed explanation goes here
-%====================================
-%% colors
-figColor=[0.9 0.9 0.9];
-frmColor=192/255*[1 1 1];
-editColor=255/255*[1 1 1];
 selectColor=[1 0 0];
-unselectColor=[0 0 0];
-inputColor=[1 1 0.93];
-outputColor=[0.8 1 1];
-tickColor=[0.5 0.5 0.5];
-popupColor=192/255*[1 1 1];
-
 figNumber=gcf;
 fis=helper.getAppdata;
 % Find the selected variable
@@ -47,6 +34,4 @@ if deleteFlag
     hndl=findobj(figNumber,'Type','uimenu','Tag','removemf');
     set(hndl,'Enable','off');
 end
-
 end
-

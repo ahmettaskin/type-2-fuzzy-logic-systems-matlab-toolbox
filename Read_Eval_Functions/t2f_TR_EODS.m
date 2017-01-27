@@ -1,21 +1,4 @@
-function [yLeft,yRight,L,R]=t2f_TR_EODS(F,Y)
-%T2F_TR_EKM
-%
-% SYNTAX:
-%     t2f_TR_KM(...)
-%
-% INPUTS:
-%
-% OUTPUTS:
-%
-% EXAMPLE :
-%
-% See also
-
-% Copyright (c) Istanbul Technical University Control Engineering 2014
-% $Revision: 1.10 $, $Date: 2014/02/19 10:20:06VET $ by $Author: Ahmet Taskin $
-
-% Calls:
+function [yLeft,yRight,L,R]=t2f_TR_EODS(F,Y):
 %% EODS Algorithm for Computing Y Left
 
 % Sort Y matrix
@@ -37,7 +20,7 @@ Fr=upperF(1);
 
 
 while(1)
-     % Step 2.
+    % Step 2.
     if m==n
         %Step 4.
         if Sl<=Sr
@@ -86,7 +69,7 @@ Fr=upperF(N);
 
 
 while(1)
-     % Step 2.
+    % Step 2.
     if m==n
         %Step 4.
         if Sl<=Sr
@@ -113,6 +96,3 @@ while(1)
         end
     end
 end
-
-
-

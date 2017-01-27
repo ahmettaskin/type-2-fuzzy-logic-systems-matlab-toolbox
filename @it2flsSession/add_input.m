@@ -1,6 +1,4 @@
 function obj = add_input( obj, name, range, nOfMfs)
-%ADD_ÝNPUT Summary of this function goes here 
-%   Detailed explanation goes here
 if nargin==1
    nOfMfs=3;
    range=[-1 1];
@@ -8,7 +6,6 @@ if nargin==1
    name=['input' num2str(numel(names)+1)];
    
 end
-
 
 if ~isprop(obj.input,name)
     obj.input.(name) = struct('name',[],...
@@ -28,6 +25,4 @@ for i=1:nOfMfs
     obj.input.(name).mfs.(['mf' num2str(i)]).lower.type='trimf';    
     obj.input.(name).mfs.(['mf' num2str(i)]).lower.values=[-1+(i-1)*step -0.5+(i-1)*step 0+(i-1)*step 0.5];
 end
-helper.setAppdata(obj)
-
-
+helper.setAppdata(obj);

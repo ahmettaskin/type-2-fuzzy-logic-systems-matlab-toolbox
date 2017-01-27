@@ -1,7 +1,4 @@
 function obj=fill(~,~,obj)
-%FÝLL Summary of this function goes here
-%   Detailed explanation goes here
-
 % inputColor=[1 1 0.8];
 mainAxes=findobj('tag','mainaxes');
 axes(mainAxes(1))
@@ -27,4 +24,3 @@ for i = 1:2:numel(currLineHndl)
     end
 end
 hold off;
-

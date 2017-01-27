@@ -1,21 +1,4 @@
 function [yLeft,yRight,L,R]=t2f_TR_KM(F,Y)
-%T2F_TR_KM
-%
-% SYNTAX:
-%     t2f_TR_KM(...)
-%
-% INPUTS:
-%
-% OUTPUTS:
-%
-% EXAMPLE :
-%
-% See also
-
-% Copyright (c) Istanbul Technical University Control Engineering 2014
-% $Revision: 1.10 $, $Date: 2014/02/19 10:20:06VET $ by $Author: Ahmet Taskin $
-
-% Calls:
 %% KM Algorithm for Computing Y Left
 
 % a) Sort Y matrix

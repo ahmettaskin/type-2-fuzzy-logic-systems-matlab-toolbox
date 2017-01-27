@@ -1,58 +1,56 @@
 function [ obj ] = addVar( obj, varargin )
-%ADDVAR Summary of this function goes here
-%   Detailed explanation goes here
-        figNumber=gcf;
-        selectColor = [1 0.3 0.3];
-        %     currMenu=gcbo;
-        %currMenu = eventSrc;
-        %     varType=get(currMenu,'Tag');
-        varType=varargin{1,1};
-        
-        fis=helper.getAppdata;
-        % "Add" has been selected, so add a variable
-        fis=helper.addVar_t2(fis,varType,'',[-1 1],'init');
-        if strcmp(varType,'input')
-            numVars=length(fis.input);
-        else
-            numVars=length(fis.output);
-        end
-        newVarName=[varType num2str(numVars)];
-        eval(['fis.' varType '(numVars).name = newVarName; '])
-        msgStr=['Adding the ' varType ' variable "' newVarName '"'];
-        statmsg(figNumber,msgStr);
-        %    set(figNumber,'UserData',fis);
-        
-        % Now replot the FIS diagram
-        % First delete all axes except for the main one
-        axHndlList=findobj(figNumber,'Type','axes');
-        mainAxHndl=findobj(figNumber,'Type','axes','Tag','mainaxesmain');
-        axHndlList(find(axHndlList==mainAxHndl))=[];
-        delete(axHndlList);
-        lineHndlList=findobj(figNumber,'Type','line');
-        delete(lineHndlList);
+figNumber=gcf;
+selectColor = [1 0.3 0.3];
+%     currMenu=gcbo;
+%currMenu = eventSrc;
+%     varType=get(currMenu,'Tag');
+varType=varargin{1,1};
+
+fis=helper.getAppdata;
+% "Add" has been selected, so add a variable
+fis=helper.addVar_t2(fis,varType,'',[-1 1],'init');
+if strcmp(varType,'input')
+    numVars=length(fis.input);
+else
+    numVars=length(fis.output);
+end
+newVarName=[varType num2str(numVars)];
+eval(['fis.' varType '(numVars).name = newVarName; '])
+msgStr=['Adding the ' varType ' variable "' newVarName '"'];
+statmsg(figNumber,msgStr);
+%    set(figNumber,'UserData',fis);
+
+% Now replot the FIS diagram
+% First delete all axes except for the main one
+axHndlList=findobj(figNumber,'Type','axes');
+mainAxHndl=findobj(figNumber,'Type','axes','Tag','mainaxesmain');
+axHndlList(find(axHndlList==mainAxHndl))=[];
+delete(axHndlList);
+lineHndlList=findobj(figNumber,'Type','line');
+delete(lineHndlList);
 %         obj=plotFis(obj);
-        
-        % Clear the VARIABLE NAME, TYPE, and RANGE fields
-        hndl=findobj(figNumber,'Type','uicontrol','Tag','currvarname');
-        set(hndl,'String',' ');
-        hndl=findobj(figNumber,'Type','uicontrol','Tag','currvartype');
-        set(hndl,'String',' ');
-        hndl=findobj(figNumber,'Type','uicontrol','Tag','currvarrange');
-        set(hndl,'String',' ');
-        
-        statmsg(figNumber,'Ready');
-        helper.setAppdata(fis);
-        % Call localSelectVar to select variable and populate text boxes
-        localSelectVar2( lower(varType), num2str(numVars), figNumber, selectColor);
-        % Update all the other editors
-        helper.setAppdata(fis);
-        mfEditorHnd=findall(0,'type','figure','Tag','mfEditor');
-        if ~isempty(mfEditorHnd)
-            close(mfEditorHnd)
-             mfEditor('initialize',fis);
-        end
-        hfuzzyt2 = findall(0,'type','figure','Tag','fuzzyt2');
-        figure(hfuzzyt2);
+
+% Clear the VARIABLE NAME, TYPE, and RANGE fields
+hndl=findobj(figNumber,'Type','uicontrol','Tag','currvarname');
+set(hndl,'String',' ');
+hndl=findobj(figNumber,'Type','uicontrol','Tag','currvartype');
+set(hndl,'String',' ');
+hndl=findobj(figNumber,'Type','uicontrol','Tag','currvarrange');
+set(hndl,'String',' ');
+
+statmsg(figNumber,'Ready');
+helper.setAppdata(fis);
+% Call localSelectVar to select variable and populate text boxes
+localSelectVar2( lower(varType), num2str(numVars), figNumber, selectColor);
+% Update all the other editors
+helper.setAppdata(fis);
+mfEditorHnd=findall(0,'type','figure','Tag','mfEditor');
+if ~isempty(mfEditorHnd)
+    close(mfEditorHnd)
+    mfEditor('initialize',fis);
+end
+hfuzzyt2 = findall(0,'type','figure','Tag','fuzzyt2');
+figure(hfuzzyt2);
 
 end
 %%%%%%%%%%%%%%%%%%%%

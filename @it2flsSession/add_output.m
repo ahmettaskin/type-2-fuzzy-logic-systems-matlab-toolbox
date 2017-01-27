@@ -1,6 +1,4 @@
 function obj = add_output( obj, name, range, nOfMfs , type)
-%ADD_OUTPUT Summary of this function goes here
-%   Detailed explanation goes here
 if nargin<5
     type = 'sugeno';
 end

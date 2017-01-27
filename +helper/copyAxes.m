@@ -1,25 +1,7 @@
 function copyAxes()
-%T2F_COPYAXES Summary of this function goes here
-%   Detailed explanation goes here
-% SYNTAX: 
-%   t2f_copyaxes(...) 
-%
-% INPUTS: 
-%   
-% OUTPUTS:
-%   
-% EXAMPLE :
-%   
-% See also 
-
-% Copyright (c) AVL PTE Controls 2015 
-% $Revision: 1.11 $, $Date: 2015/01/13 08:48:54GMT $ by $Author: Dalon Thierry RGB (DALONT) $ 
-
-% Calls: 
-
-% Find Figure 
+% Find Figure
 figNumber=gcf;
-% Fin Axes 
+% Fin Axes
 mainAxes=findobj(figNumber,'Type','axes','Tag','mainaxes');
 % Create new figure
 f1=figure;
@@ -56,7 +38,4 @@ grid off
 
 % Position of the figure
 set(s1,'Position',[0.3 0.08 0.65 0.86])
-
-
-
 hold off;

@@ -1,5 +1,4 @@
 function newparams = lowerMf(params,type,varRange)
-
 diff = 0.5*(abs(varRange(1)-varRange(2)));
 newparams=params;
 switch type

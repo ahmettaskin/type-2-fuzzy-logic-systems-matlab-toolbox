@@ -1,19 +1,4 @@
 function [out,errorStr]=readt2fis(fileName,pathName)
-%READFIS Load FIS from disk.
-%   FISMAT=READFIS('filename') creates a FIS matrix in the
-%   workspace corresponding to the FIS file 'filename' on disk.
-%
-%   FISMAT=READFIS brings up a UIGETFILE dialog box to assist
-%   with the name and directory location of the file.
-%
-%   The extension '.t2fis' is assumed for 'filename' if it is not 
-%   already present.
-%
-%   See also WRITEFIS.
-
-%   Ned Gulley, 5-10-94, Kelly Liu 4-15-96
-%   Copyright 1994-2004 The MathWorks, Inc.
-%   $Revision: 1.36.2.4 $  $Date: 2007/03/28 21:37:12 $
 out=it2flsSession;
 out=[];
 if nargin<1,
@@ -39,31 +24,31 @@ else
             ext = '.t2fis';
         end
         if isempty(name)
-           errorStr = 'Empty file name: no file was loaded';
-           if nargout<2,
-              error(errorStr);
-           end
-           return
+            errorStr = 'Empty file name: no file was loaded';
+            if nargout<2,
+                error(errorStr);
+            end
+            return
         end
-        fileName = fullfile(pathstr,[name ext]);        
+        fileName = fullfile(pathstr,[name ext]);
     else
-       error('File name must be specified as a string.')
+        error('File name must be specified as a string.')
     end
 end
 
 [fid,errorStr]=fopen(fileName,'r');
 if fid<0,
-   if nargout<2,
-      error(errorStr);
-   end
-   return
+    if nargout<2,
+        error(errorStr);
+    end
+    return
 end
 
 % Structure
 nextLineVar=' ';
 topic='[System]';
 while isempty(findstr(nextLineVar,topic)),
-   nextLineVar=LocalNextline(fid);
+    nextLineVar=LocalNextline(fid);
 end
 
 % These are the system defaults in case the user has omitted them
@@ -82,9 +67,9 @@ nextLineVar=' ';
 % a lot of variables, like "Name" and so on, are getting initialized
 % invisibly
 while isempty([findstr(nextLineVar,'[Input') findstr(nextLineVar,'[Output')
-      findstr(nextLineVar,'[Rules')]),
-   eval([nextLineVar ';']);
-   nextLineVar=LocalNextline(fid);
+        findstr(nextLineVar,'[Rules')]),
+    eval([nextLineVar ';']);
+    nextLineVar=LocalNextline(fid);
 end
 
 if strcmp(Type,'sugeno')
@@ -120,95 +105,95 @@ InMFParams=[];
 OutMFParams=[];
 % Now begin with the inputs
 for varIndex=1:NumInputs,
-   nextLineVar=' ';
-   topic='[Input';
-   while isempty(findstr(nextLineVar,topic)),
-      nextLineVar=LocalNextline(fid);
-   end
-   
-   % Input variable name
-   Name=0;
-   eval([LocalNextline(fid) ';'])
-   if ~Name, 
-      error(['Name missing or out of place for input variable ' ...
+    nextLineVar=' ';
+    topic='[Input';
+    while isempty(findstr(nextLineVar,topic)),
+        nextLineVar=LocalNextline(fid);
+    end
+    
+    % Input variable name
+    Name=0;
+    eval([LocalNextline(fid) ';'])
+    if ~Name,
+        error(['Name missing or out of place for input variable ' ...
             num2str(varIndex)]);
-   end
-   
-   out.input(varIndex).name=Name;
-   % Input variable range
-   Range=0;
-   eval([LocalNextline(fid) ';'])
-   if ~Range, 
-      error(['Range missing or out of place for input variable ' ...
+    end
+    
+    out.input(varIndex).name=Name;
+    % Input variable range
+    Range=0;
+    eval([LocalNextline(fid) ';'])
+    if ~Range,
+        error(['Range missing or out of place for input variable ' ...
             num2str(varIndex)]);
-   end
-   out.input(varIndex).range=Range;
-   
-   % Number of membership functions
-   eval([LocalNextline(fid) ';']);
-   
-   for MFIndex=1:NumMFs*2,
-       MFIndex2=round(MFIndex/2);
-       if ~helper.isInt(MFIndex/2)
-          MFIndex1=1;
-       else
-          MFIndex1=2;
-       end
-      MFStr=LocalNextline(fid);
-      nameStart=findstr(MFStr,'=');
-      nameEnd=findstr(MFStr,':');
-      MFName=eval(MFStr((nameStart+1):(nameEnd-1))); 
-      typeStart=findstr(MFStr,':');
-      typeEnd=findstr(MFStr,',');
-      MFType=eval(MFStr((typeStart+1):(typeEnd-1)));
-      MFParams=eval(MFStr((typeEnd+1):length(MFStr)));
-      out.input(varIndex).mf(MFIndex1,MFIndex2).name=MFName;
-      out.input(varIndex).mf(MFIndex1,MFIndex2).type=MFType;
-      out.input(varIndex).mf(MFIndex1,MFIndex2).params=MFParams;
-   end   
+    end
+    out.input(varIndex).range=Range;
+    
+    % Number of membership functions
+    eval([LocalNextline(fid) ';']);
+    
+    for MFIndex=1:NumMFs*2,
+        MFIndex2=round(MFIndex/2);
+        if ~helper.isInt(MFIndex/2)
+            MFIndex1=1;
+        else
+            MFIndex1=2;
+        end
+        MFStr=LocalNextline(fid);
+        nameStart=findstr(MFStr,'=');
+        nameEnd=findstr(MFStr,':');
+        MFName=eval(MFStr((nameStart+1):(nameEnd-1)));
+        typeStart=findstr(MFStr,':');
+        typeEnd=findstr(MFStr,',');
+        MFType=eval(MFStr((typeStart+1):(typeEnd-1)));
+        MFParams=eval(MFStr((typeEnd+1):length(MFStr)));
+        out.input(varIndex).mf(MFIndex1,MFIndex2).name=MFName;
+        out.input(varIndex).mf(MFIndex1,MFIndex2).type=MFType;
+        out.input(varIndex).mf(MFIndex1,MFIndex2).params=MFParams;
+    end
 end
 
 % Now for the outputs
 for varIndex=1:NumOutputs,
-   nextLineVar=' ';
-   topic='Output';
-   while isempty(findstr(nextLineVar,topic)),
-      nextLineVar=LocalNextline(fid);
-   end
-   
-   % Output variable name
-   varName=LocalNextline(fid);
-   varName=strrep(varName,'Name','');
-   varName=eval(strrep(varName,'=',''));
-   out.output(varIndex).name=varName;
-   
-   % Output variable range
-   rangeStr=LocalNextline(fid);
-   rangeStr=strrep(rangeStr,'Range','');
-   rangeStr=strrep(rangeStr,'=','');
-   out.output(varIndex).range=eval(['[' rangeStr ']']);
-   
-   NumMFsStr=LocalNextline(fid);
-   NumMFsStr=strrep(NumMFsStr,'NumMFs','');
-   NumMFsStr=strrep(NumMFsStr,'=','');
-   NumMFs=eval(NumMFsStr);
-   
-   for MFIndex=1:NumMFs,
-      MFStr=LocalNextline(fid);
-      nameStart=findstr(MFStr,'=');
-      nameEnd=findstr(MFStr,':');
-      MFName=eval(MFStr((nameStart+1):(nameEnd-1)));
-      
-      typeStart=findstr(MFStr,':');
-      typeEnd=findstr(MFStr,',');
-      MFType=eval(MFStr((typeStart+1):(typeEnd-1)));
-      
-      MFParams=eval(MFStr((typeEnd+1):length(MFStr)));
-      
-      out.output(varIndex).mf(MFIndex).name=MFName;
-      out.output(varIndex).mf(MFIndex).type=MFType;
-      out.output(varIndex).mf(MFIndex).params=MFParams;
-   end
+    nextLineVar=' ';
+    topic='Output';
+    while isempty(findstr(nextLineVar,topic)),
+        nextLineVar=LocalNextline(fid);
+    end
+    
+    % Output variable name
+    varName=LocalNextline(fid);
+    varName=strrep(varName,'Name','');
+    varName=eval(strrep(varName,'=',''));
+    out.output(varIndex).name=varName;
+    
+    % Output variable range
+    rangeStr=LocalNextline(fid);
+    rangeStr=strrep(rangeStr,'Range','');
+    rangeStr=strrep(rangeStr,'=','');
+    out.output(varIndex).range=eval(['[' rangeStr ']']);
+    
+    NumMFsStr=LocalNextline(fid);
+    NumMFsStr=strrep(NumMFsStr,'NumMFs','');
+    NumMFsStr=strrep(NumMFsStr,'=','');
+    NumMFs=eval(NumMFsStr);
+    
+    for MFIndex=1:NumMFs,
+        MFStr=LocalNextline(fid);
+        nameStart=findstr(MFStr,'=');
+        nameEnd=findstr(MFStr,':');
+        MFName=eval(MFStr((nameStart+1):(nameEnd-1)));
+        
+        typeStart=findstr(MFStr,':');
+        typeEnd=findstr(MFStr,',');
+        MFType=eval(MFStr((typeStart+1):(typeEnd-1)));
+        
+        MFParams=eval(MFStr((typeEnd+1):length(MFStr)));
+        
+        out.output(varIndex).mf(MFIndex).name=MFName;
+        out.output(varIndex).mf(MFIndex).type=MFType;
+        out.output(varIndex).mf(MFIndex).params=MFParams;
+    end
 end
 
 % Now assemble the whole FIS data matrix
@@ -224,24 +209,24 @@ if isempty(NumOutputMFs), NumOutputMFs=0; end
 nextLineVar=' ';
 topic='Rules';
 while isempty(findstr(nextLineVar,topic)),
-   nextLineVar=LocalNextline(fid);
+    nextLineVar=LocalNextline(fid);
 end
 
 ruleIndex=1;
 txtRuleList=[];
 out.rule=[];
 while ~feof(fid)
-   ruleStr=LocalNextline(fid);
-   if ischar(ruleStr) 
-    txtRuleList(ruleIndex,1:length(ruleStr))=ruleStr;
-    ruleIndex=ruleIndex+1;
-   end
+    ruleStr=LocalNextline(fid);
+    if ischar(ruleStr)
+        txtRuleList(ruleIndex,1:length(ruleStr))=ruleStr;
+        ruleIndex=ruleIndex+1;
+    end
 end
 
 if ~isempty(txtRuleList)&& isfield(out, 'input') && isfield(out, 'output')
-%            & isprop(out.input, 'mf') & isprop(out.output, 'mf') ...
-%            & isprop(out.input.mf, 'name') & isprop(out.output.mf, 'name')
-  out=parsrule(out,txtRuleList,'indexed');
+    %            & isprop(out.input, 'mf') & isprop(out.output, 'mf') ...
+    %            & isprop(out.input.mf, 'name') & isprop(out.output.mf, 'name')
+    out=parsrule(out,txtRuleList,'indexed');
 end
 
 fclose(fid);
@@ -265,16 +250,16 @@ outLine=fgetl(fid);
 
 stopFlag=0;
 while (~stopFlag),
-   if length(outLine)>0,
-      if (~strcmp(outLine(1),'%') | (outLine ==-1)),
-         % This line has real content or the end of the file; stop and return outLine
-         stopFlag=1;
-      else
-         % This line must be a comment; keep going
-         outLine=fgetl(fid);
-      end
-   else
-      % This line is of length zero
-      outLine=fgetl(fid);
-   end
+    if length(outLine)>0,
+        if (~strcmp(outLine(1),'%') | (outLine ==-1)),
+            % This line has real content or the end of the file; stop and return outLine
+            stopFlag=1;
+        else
+            % This line must be a comment; keep going
+            outLine=fgetl(fid);
+        end
+    else
+        % This line is of length zero
+        outLine=fgetl(fid);
+    end
 end;
