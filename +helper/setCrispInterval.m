@@ -55,16 +55,21 @@ HandlGridOn = findobj('Tag', 'gridon');
 HandlGridOff = findobj('Tag', 'gridoff');
 HandlGridFrame = findobj('Tag', 'GridFrame');
 HandlGridText = findobj('String', 'Grid');
-
+fis=helper.getAppdata;
 
 switch cmd
     case 'crisp'
-        set(HandlInterval,'value',~crispval)
+        set(HandlInterval,'value',0);
+        set(HandlCrisp,'value',1);
         intval=get(HandlInterval,'value');
+        fis.output.crisp='crisp';
+        helper.setAppdata(fis);
     case 'interval'
-        set(HandlCrisp,'value',~intval)
+        set(HandlInterval,'value',1);
+        set(HandlCrisp,'value',0);
         crispval=get(HandlCrisp,'value');
-        
+        fis.output.crisp='interval';
+        helper.setAppdata(fis);
     case 'input'
         %% Upper Membership Function Handles
         % Name String Upper

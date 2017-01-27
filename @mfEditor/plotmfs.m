@@ -396,6 +396,10 @@ if plot_mfs == 1
     % Reset the remove all mfs menuitem
     hndl=findobj(figNumber,'Type','uimenu','Tag','removeallmf');
     set(hndl,'Enable','on');
+    if strcmp(varType,'output')
+        helper.setCrispInterval(fis.output.crisp);
+    end
+    
 end
 end
 %%% localgetmfparam %%%
