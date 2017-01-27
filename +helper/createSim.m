@@ -9,8 +9,11 @@ numlines=1;
 defaultanswer={'My_Interval_Type_2_Model'};
 answer=inputdlg(prompt,name,numlines,defaultanswer);
 drawnow;
-fname = answer{1};
-
+try
+    fname = answer{1};
+catch
+    return;
+end
 % Check if the file already exists and delete it if it does
 if exist(fname,'file') == 4
     % If it does then check whether it's open

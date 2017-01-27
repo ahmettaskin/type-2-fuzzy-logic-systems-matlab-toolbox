@@ -25,7 +25,6 @@ if nargin==0
     %     warning('function needs 2 input')
     %     return
 end
-TRMethod = t2fis.typeRedMethod;
 if nargin == 3
     try
         t2fisstruct=evalin('base',t2fis);
@@ -68,7 +67,8 @@ if nargin == 3
     elseif TRMethod==9
         t2fis.typeRedMethod='Custom';
     end
-    
+else
+    TRMethod = t2fis.typeRedMethod;
 end
 % if ~isa(t2fis,'it2flsSession')
 %     try
