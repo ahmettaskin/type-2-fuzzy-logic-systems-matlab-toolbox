@@ -726,8 +726,9 @@ else
     end
     
 end
-%obj=fill('','',obj);
-
+try
+    obj=fill('','',obj);
+end
 end
 
 function obj=gridAxs(~,~,obj,cmd)
@@ -831,7 +832,7 @@ for ii=1:2
                 newParamsUse(1,2)=newParamsLower;
             catch
                 for kk=1:length(newParamsLower)
-                    newParamsUse(2,kk) = newParamsLower(kk);                   
+                    newParamsUse(2,kk) = newParamsLower(kk);
                 end
                 
             end
@@ -1316,7 +1317,7 @@ if ~(strcmp(fis.type,'sugeno') & strcmp(varType,'output')),
             end
         end
         eval(['fis.' varType '(' num2str(varIndex) ').range=' mat2str(newRange) ';']);
-
+        
         helper.setAppdata(fis);
         
         % ... and plot

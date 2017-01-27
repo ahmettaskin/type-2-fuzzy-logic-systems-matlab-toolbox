@@ -48,7 +48,7 @@ Input2=RangeInp2(1):(diffRange2/plotpoints):RangeInp2(2);
 try
     for i=1:numel(Input2)
         for j=1:numel(Input1)
-            Output(i,j)= evalt2(t2fis,[Input1M(i,j) Input2M(i,j)]);
+            Output(i,j)= evalt2([Input1M(i,j) Input2M(i,j)],t2fis);
         end
     end
 catch exc

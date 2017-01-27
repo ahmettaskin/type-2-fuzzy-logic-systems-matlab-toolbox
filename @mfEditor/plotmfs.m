@@ -248,10 +248,18 @@ if plot_mfs == 1
         mfParams=localgetmfparam(fis, varType, varIndex, newCurrMF, 'params');
         if  isequal(varType,'output')
             mfTypeUpper=localgetmfparam(fis, varType, varIndex, newCurrMF, 'type');
-            for k=1:numel(mfParams)
-                mfParamsUpper(1,k)= mfParams(k);
-                % mfParamsLower=mfParamsUpper;
-            end
+            if strcmpi(mfTypeUpper,'constant')
+                for k=1:numel(mfParams)
+                     mfParamsUpper(1,k)= mfParams(k);
+                end                                
+            else
+                for kkk=1:2
+                    for k=1:numel(mfParams)/2
+                        mfParamsUpper(1,kkk*k)= mfParams(kkk,k);
+                        % mfParamsLower=mfParamsUpper;
+                    end
+                end
+            end            
         elseif ~helper.isInt(newCurrMF/2) % selected is upper
             mfTypeUpper=localgetmfparam(fis, varType, varIndex, newCurrMF, 'type');
             mfTypeLower=localgetmfparam(fis, varType, varIndex, newCurrMF+1, 'type');
