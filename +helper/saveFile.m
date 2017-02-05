@@ -135,6 +135,14 @@ for varIndex=1:length(fis.output),
     fprintf(fid,['\n[Output' num2str(varIndex) ']\n']);
     str=['Name=''' fis.output(varIndex).name '''\n'];
     fprintf(fid,str);
+    try
+        str=['CrispInterval=''' fis.output(varIndex).crisp '''\n'];
+        fprintf(fid,str);
+    catch
+        str='crisp';
+        str=['CrispInterval=''' str '''\n'];
+        fprintf(fid,str);
+    end
     str=['Range=' mat2str(fis.output(varIndex).range) '\n'];
     fprintf(fid,str);
     str=['NumMFs=' num2str(length(fis.output(varIndex).mf)) '\n'];

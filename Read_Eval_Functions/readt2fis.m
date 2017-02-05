@@ -169,10 +169,20 @@ for varIndex=1:NumOutputs,
     
     % Output variable range
     rangeStr=LocalNextline(fid);
-    rangeStr=strrep(rangeStr,'Range','');
-    rangeStr=strrep(rangeStr,'=','');
-    out.output(varIndex).range=eval(['[' rangeStr ']']);
-    
+    if isempty(strfind(rangeStr,'CrispInterval'))
+        rangeStr=strrep(rangeStr,'Range','');
+        rangeStr=strrep(rangeStr,'=','');
+        out.output(varIndex).range=eval(['[' rangeStr ']']);
+    else
+        crispStr=strrep(rangeStr,'CrispInterval','');
+        crispStr=strrep(crispStr,'=','');
+        out.output(varIndex).crisp=eval(['[' crispStr ']']);
+        
+        rangeStr=LocalNextline(fid);
+        rangeStr=strrep(rangeStr,'Range','');
+        rangeStr=strrep(rangeStr,'=','');
+        out.output(varIndex).range=eval(['[' rangeStr ']']);  
+    end    
     NumMFsStr=LocalNextline(fid);
     NumMFsStr=strrep(NumMFsStr,'NumMFs','');
     NumMFsStr=strrep(NumMFsStr,'=','');

@@ -44,7 +44,7 @@ HandlTypeLowerEdit=findobj('tag','mftypelower');
 HandlTypeLowerFrame=findobj('tag','LowerFrame');
 
 %% Output Page Selections
-HandlCrisp = findobj('Tag', 'CheckboxCrips');
+HandlCrisp = findobj('Tag', 'CheckboxCrisp');
 HandlInterval = findobj('Tag', 'CheckboxInterval');
 HandlCrispText = findobj('String', 'Choose Output Type');
 crispval=get(HandlCrisp,'value');
