@@ -26,7 +26,9 @@ end
 
 fisType=fis.type;
 mainAxes=findobj(figNumber,'Tag','mainaxes');
-axes(mainAxes);
+try
+    axes(mainAxes);
+end
 varName=eval(['fis.' varType '(' num2str(varIndex) ').name']);
 try
     numMFs=eval(['length(fis.' varType '(' num2str(varIndex) ').mf(:))']);
