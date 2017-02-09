@@ -20,11 +20,11 @@ newRangeStr=['[' newRangeStr ']'];
 % Use eval try-catch to prevent really weird stuff...
 newRange=eval(newRangeStr,mat2str(oldRange,4));
 if length(newRange)~=2,
-    statmsg(figNumber,'Range vector must have exactly two elements');
+    helper.statmsg(figNumber,'Range vector must have exactly two elements');
     newRange=oldRange;
 end
 if diff(newRange)<=0,
-    statmsg(figNumber,'Range vector must be of the form [lowLimit highLimit]');
+    helper.statmsg(figNumber,'Range vector must be of the form [lowLimit highLimit]');
     newRange=oldRange;
 end
 

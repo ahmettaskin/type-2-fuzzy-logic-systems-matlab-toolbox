@@ -236,7 +236,7 @@ end
 if ~isempty(txtRuleList)&& isfield(out, 'input') && isfield(out, 'output')
     %            & isprop(out.input, 'mf') & isprop(out.output, 'mf') ...
     %            & isprop(out.input.mf, 'name') & isprop(out.output.mf, 'name')
-    out=parsrule(out,txtRuleList,'indexed');
+    out=helper.parsrule(out,txtRuleList,'indexed');
 end
 
 fclose(fid);

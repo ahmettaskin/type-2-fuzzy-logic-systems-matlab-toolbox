@@ -53,7 +53,7 @@ for i=0:numInputs-1
     else
         labelStr=' ';
         msgStr=['No rules for system "' fis.name '"'];
-        statmsg(gcf,msgStr);
+        helper.statmsg(gcf,msgStr);
     end
     name=['ruleinmake' num2str(i+1)];
     if isfield(fis.input(i+1), 'mf') & ~isempty(fis.input(i+1).mf)

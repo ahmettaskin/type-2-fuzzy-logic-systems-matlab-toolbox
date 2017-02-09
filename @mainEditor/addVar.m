@@ -17,7 +17,7 @@ end
 newVarName=[varType num2str(numVars)];
 eval(['fis.' varType '(numVars).name = newVarName; '])
 msgStr=['Adding the ' varType ' variable "' newVarName '"'];
-statmsg(figNumber,msgStr);
+helper.statmsg(figNumber,msgStr);
 %    set(figNumber,'UserData',fis);
 
 % Now replot the FIS diagram
@@ -38,7 +38,7 @@ set(hndl,'String',' ');
 hndl=findobj(figNumber,'Type','uicontrol','Tag','currvarrange');
 set(hndl,'String',' ');
 
-statmsg(figNumber,'Ready');
+helper.statmsg(figNumber,'Ready');
 helper.setAppdata(fis);
 % Call localSelectVar to select variable and populate text boxes
 localSelectVar2( lower(varType), num2str(numVars), figNumber, selectColor);
@@ -113,12 +113,12 @@ if varIndex ~= 0
         guiName='Membership Function Editor';
         newFigNumber=findobj(0,'Name',[guiName ': ' fisName]);
         if ~isempty(newFigNumber),
-            statmsg(figNumber,['Updating ' guiName]);
+            helper.statmsg(figNumber,['Updating ' guiName]);
             figure(newFigNumber);
             % mfedit('#update',varType,varIndex);
             mfEditor('initialize',fis);
         else
-            statmsg(figNumber,['Opening ' guiName]);
+            helper.statmsg(figNumber,['Opening ' guiName]);
             % mfedit(fis,varType,varIndex);
             mfEditor('initialize',fis);
         end

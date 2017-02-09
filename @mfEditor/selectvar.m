@@ -78,7 +78,7 @@ rangeStr=mat2str(eval(['fis.' varType '(' num2str(varIndex),').range']),4);
 labelStr=[' ' rangeStr];
 set(hndl,'String',labelStr);
 
-statmsg(figNumber,['Selected variable "' varName '"']);
+helper.statmsg(figNumber,['Selected variable "' varName '"']);
 
 helper.setCrispInterval(varType);
 

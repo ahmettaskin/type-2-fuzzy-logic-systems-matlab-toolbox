@@ -1,41 +1,11 @@
 function out=getFis(fis,arg1,arg2,arg3,arg4,arg5)
-%GETFIS Get fuzzy inference system properties.
-%   OUT = GETFIS(FIS) returns a list of general information about the
-%   fuzzy inference system FIS.
-%   OUT = GETFIS(FIS,'fisProp') returns the current value of the FIS
-%   property called 'fisProp'.
-%   OUT = GETFIS(FIS, 'vartype', 'varindex') returns a general list
-%   of information on 'vartype' of 'varindex'.
-%   OUT = GETFIS(FIS, 'vartype', 'varindex', 'varprop') returns the
-%   current value in 'varprop' for 'vartype' of 'varindex'.
-%   OUT = GETFIS(FIS, 'vartype', 'varindex', 'mf', 'mfindex')
-%   returns a general list of information on membership function
-%   'mfindex'
-%   OUT = GETFIS(FIS, 'vartype', 'varindex', 'mf', 'mfindex', 'mfprop')
-%   returns the current value in 'mfprop' for 'mf' of 'mfindex'
-%
-%   For example:
-%
-%           a=newfis('tipper');
-%           a=addvar(a,'input','service',[0 10]);
-%           a=addmf(a,'input',1,'poor','gaussmf',[1.5 0]);
-%           a=addmf(a,'input',1,'excellent','gaussmf',[1.5 10]);
-%           getfis(a)
-%
-%   See also SETFIS, SHOWFIS.
-
-
-%   Ned Gulley, 2-2-94, Kelly Liu 7-10-96
-%   Copyright 1994-2005 The MathWorks, Inc.
-%   $Revision: 1.33.2.3 $  $Date: 2005/11/15 00:57:28 $
-
-if isprop(fis, 'input')
+if isfield(fis, 'input') || isprop(fis, 'input')
     numInputs=length(fis.input);
 else
     numInputs=0;
 end
 
-if isprop(fis, 'output')
+if isfield(fis, 'output')|| isprop(fis, 'input')
     numOutputs=length(fis.output);
 else
     numOutputs=0;
@@ -277,20 +247,20 @@ switch nargin
             varType=lower(arg1);
             varIndex=arg2;
             
-            numMFs=getfis(fis,varType,varIndex,'NumMFs');
-            out.Name = getfis(fis,varType,varIndex,'Name');
+            numMFs=helper.getFis(fis,varType,varIndex,'NumMFs');
+            out.Name = helper.getFis(fis,varType,varIndex,'Name');
             fprintf('      Name =     %s\n',out.Name);
             fprintf('      NumMFs =   %s\n',num2str(numMFs));
             out.NumMFs = numMFs;
             fprintf('      MFLabels = \n');
             if numMFs~=0,
-                mfLabels=getfis(fis,varType,varIndex,'MFLabels');
+                mfLabels=helper.getFis(fis,varType,varIndex,'MFLabels');
                 for n=1:numMFs,
                     fprintf('            %s\n',mfLabels(n,:));
                     out = setfield(out, ['mf' num2str(n)], deblank(mfLabels(n,:)));
                 end
             end
-            range=getfis(fis,varType,varIndex,'Range');
+            range=helper.getFis(fis,varType,varIndex,'Range');
             fprintf('      Range =    %s\n',mat2str(range));
             out.range = range;
             
@@ -379,12 +349,12 @@ switch nargin
             varIndex=arg2;
             MFIndex=arg4;
             
-            MFLabels=getfis(fis,varType,varIndex,'MFLabels');
-            out.Name = getfis(fis,varType,varIndex,'MF',MFIndex,'Name');
+            MFLabels=helper.getFis(fis,varType,varIndex,'MFLabels');
+            out.Name = helper.getFis(fis,varType,varIndex,'MF',MFIndex,'Name');
             fprintf('      Name = %s\n',out.Name);
-            out.Type = getfis(fis,varType,varIndex,'MF',MFIndex,'Type');
+            out.Type = helper.getFis(fis,varType,varIndex,'MF',MFIndex,'Type');
             fprintf('      Type = %s\n',out.Type);
-            params=getfis(fis,varType,varIndex,'MF',MFIndex,'Params');
+            params=helper.getFis(fis,varType,varIndex,'MF',MFIndex,'Params');
             out.params = params;
             fprintf('      Params = %s\n',mat2str(params))
         end

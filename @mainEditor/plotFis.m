@@ -44,7 +44,7 @@ end
 % For plotting three cartoon membership functions in the box
 xMin=-1; xMax=1;
 x=(-1:0.1:1)';
-y1=trimf(x,[-2 -1 0]); y2=trimf(x,[-1 0 1]); y3=trimf(x,[0 1 2]);
+y1=helper.trimf(x,[-2 -1 0]); y2=helper.trimf(x,[-1 0 1]); y3=helper.trimf(x,[0 1 2]);
 xlineMatrix=[x x x x x x];
 ylineMatrix=[y1 y1*0.7 y2 y2*0.7 y3 y3*0.7];
 
@@ -366,12 +366,12 @@ if varIndex ~= 0
         guiName='Membership Function Editor';
         newFigNumber=findobj(0,'Name',[guiName ': ' fisName]);
         if ~isempty(newFigNumber),
-            statmsg(figNumber,['Updating ' guiName]);
+            helper.statmsg(figNumber,['Updating ' guiName]);
             figure(newFigNumber);
             % mfedit('#update',varType,varIndex);
             mfEditor('initialize',fis)
         else
-            statmsg(figNumber,['Opening ' guiName]);
+            helper.statmsg(figNumber,['Opening ' guiName]);
             % mfedit(fis,varType,varIndex);
             mfEditor('initialize',fis);
         end

@@ -98,8 +98,8 @@ for n=1:NofRule
         % Calculate Lower firing
         UpperParams = t2fis.input(i).mf(1,rules(n,i)).params;
         LowerParams = t2fis.input(i).mf(2,rules(n,i)).params;
-        MemberUpper = UpperParams(end)*eval([t2fis.input(i).mf(1,rules(n,i)).type '(x(i),UpperParams(1:end-1))']);
-        MemberLower = LowerParams(end)*eval([t2fis.input(i).mf(2,rules(n,i)).type '(x(i),LowerParams(1:end-1))']);
+        MemberUpper = UpperParams(end)*eval(['helper.' t2fis.input(i).mf(1,rules(n,i)).type '(x(i),UpperParams(1:end-1))']);
+        MemberLower = LowerParams(end)*eval(['helper.' t2fis.input(i).mf(2,rules(n,i)).type '(x(i),LowerParams(1:end-1))']);
         f1U=f1U*MemberUpper;
         f1L=f1L*MemberLower;
     end

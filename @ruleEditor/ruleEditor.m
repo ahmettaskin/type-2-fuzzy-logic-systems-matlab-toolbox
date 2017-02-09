@@ -122,7 +122,7 @@ classdef ruleEditor
             %             else
             %                 labelStr=' ';
             %                 msgStr=['No rules for system "' fisName '"'];
-            %                 statmsg(figNumber,msgStr);
+            %                 helper.statmsg(figNumber,msgStr);
             %             end
             name='rulewindow';
             pos=[left bottom btnWid*2 btnHt];

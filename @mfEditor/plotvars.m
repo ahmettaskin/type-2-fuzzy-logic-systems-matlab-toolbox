@@ -103,7 +103,7 @@ for varIndex=1:numInputs,
     
     % Plot three cartoon membership functions in the box
     x=(-1:0.1:1)';
-    y1=trimf(x,[-2 -1 0]); y2=trimf(x,[-1 0 1]); y3=trimf(x,[0 1 2]);
+    y1=helper.trimf(x,[-2 -1 0]); y2=helper.trimf(x,[-1 0 1]); y3=helper.trimf(x,[0 1 2]);
     xlineMatrix=[x x x x x x];
     ylineMatrix=[y1 y1*0.7 y2 y2*0.7 y3 y3*0.7];
     if helper.isNewGraphics
@@ -317,7 +317,7 @@ rangeStr=mat2str(eval(['fis.' varType '(' num2str(varIndex),').range']),4);
 labelStr=[' ' rangeStr];
 set(hndl,'String',labelStr);
 
-statmsg(figNumber,['Selected variable "' varName '"']);
+helper.statmsg(figNumber,['Selected variable "' varName '"']);
 
 helper.setCrispInterval(varType);
 

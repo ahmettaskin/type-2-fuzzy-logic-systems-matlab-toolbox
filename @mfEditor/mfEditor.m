@@ -615,7 +615,7 @@ newType=deblank(typeList(typeValue,:));
 % Strip off the leading space
 newType=fliplr(deblank(fliplr(newType)));
 msgStr=['Changing type of "' fis.(varType)(varIndex).mf(currMF).name  '" to "' newType '"'];
-statmsg(figNumber,msgStr);
+helper.statmsg(figNumber,msgStr);
 
 % Now translate and insert the translated parameters
 if strcmp(fisType,'sugeno') & strcmp(varType,'output'),
@@ -672,7 +672,7 @@ else
     newType=deblank(newType);
     varRange=fis.(varType)(varIndex).range;
     tol=1e-3*(varRange(2)-varRange(1));
-    [newParamsUpper,errorStr]=mf2mf(oldParams,oldType,newType,tol);
+    [newParamsUpper,errorStr]=helper.mf2mf(oldParams,oldType,newType,tol);
     if helper.isInt(currMF/2)
         % newParamsUpper = helper.lowerMf(newParamsUpper,newType,varRange);
         newParamsUpper(end+1)=0.5;
@@ -680,9 +680,9 @@ else
         newParamsUpper(end+1)=1;
     end
     if isempty(newParamsUpper),
-        statmsg(figNumber,errorStr);
+        helper.statmsg(figNumber,errorStr);
         set(paramHndl,'String',[' ' mat2str(oldParams,4)]);
-        val=findrow(oldType,typeList);
+        val=helper.findrow(oldType,typeList);
         set(mfTypeHndl,'Value',val);
     else
         % Set the MF params to the right value
@@ -899,7 +899,7 @@ end
 helper.setAppdata(fis);
 set(HandlParamsUpper,'String',[' ' mat2str(newParamsUpper,4)]);
 set(HandlParamsLower,'String',[' ' mat2str(newParamsLower,4)]);
-statmsg(figNumber,msgStr);
+helper.statmsg(figNumber,msgStr);
 obj=fill('','',obj);
 end
 
@@ -1146,13 +1146,13 @@ if plot_mfs == 1
         set(currTxtHndl,'Color',selectColor,'FontWeight','bold');
         
         mfTypeList=get(mfTypeHndl,'String');
-        mfTypeValue=findrow(mfTypeUpper,mfTypeList);
+        mfTypeValue=helper.findrow(mfTypeUpper,mfTypeList);
         if isempty(mfTypeValue),
             mfTypeList=str2mat(mfTypeList, [' ' mfTypeUpper]);
-            mfTypeValue=findrow(mfTypeUpper,mfTypeList);
+            mfTypeValue=helper.findrow(mfTypeUpper,mfTypeList);
             set(mfTypeHndl,'String',mfTypeList,'Value',mfTypeValue);
             msgStr=['Installing custom membership function "' mfTypeUpper '"'];
-            statmsg(figNumber,msgStr);
+            helper.statmsg(figNumber,msgStr);
         end
         set(mfTypeHndl,'Value',mfTypeValue,'Enable','on');
         
@@ -1160,13 +1160,13 @@ if plot_mfs == 1
         if ~isequal(varType,'output')
             mfTypeHndlLower=findobj(figNumber,'Type','uicontrol','Tag','mftypelower');
             mfTypeList=get(mfTypeHndlLower,'String');
-            mfTypeValue=findrow(mfTypeLower,mfTypeList);
+            mfTypeValue=helper.findrow(mfTypeLower,mfTypeList);
             if isempty(mfTypeValue),
                 mfTypeList=str2mat(mfTypeList, [' ' mfTypeLower]);
-                mfTypeValue=findrow(mfTypeLower,mfTypeList);
+                mfTypeValue=helper.findrow(mfTypeLower,mfTypeList);
                 set(mfTypeHndlLower,'String',mfTypeList,'Value',mfTypeValue);
                 msgStr=['Installing custom membership function "' mfTypeLower '"'];
-                statmsg(figNumber,msgStr);
+                helper.statmsg(figNumber,msgStr);
             end
             set(mfTypeHndlLower,'Value',mfTypeValue,'Enable','on');
         end
@@ -1277,11 +1277,11 @@ newRangeStr=['[' newRangeStr ']'];
 % Use eval try-catch to prevent really weird stuff...
 newRange=eval(newRangeStr,mat2str(oldRange,4));
 if length(newRange)~=2,
-    statmsg(figNumber,'Range vector must have exactly two elements');
+    helper.statmsg(figNumber,'Range vector must have exactly two elements');
     newRange=oldRange;
 end
 if diff(newRange)<=0,
-    statmsg(figNumber,'Range vector must be of the form [lowLimit highLimit]');
+    helper.statmsg(figNumber,'Range vector must be of the form [lowLimit highLimit]');
     newRange=oldRange;
 end
 

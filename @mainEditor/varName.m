@@ -18,7 +18,7 @@ newName=fliplr(deblank(fliplr(newName)));
 newName(find(newName==32))=setstr(95*ones(size(find(newName==32))));
 set(varNameHndl,'String',[' ' newName]);
 msgStr=['Renaming ' varType ' variable ' num2str(varIndex) ' to "' newName '"'];
-statmsg(figNumber,msgStr);
+helper.statmsg(figNumber,msgStr);
 
 % Change the name of the label in the input-output diagram
 txtHndl=get(currVarAxes,'XLabel');

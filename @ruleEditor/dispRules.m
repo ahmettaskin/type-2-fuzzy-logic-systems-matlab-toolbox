@@ -8,10 +8,10 @@ fis=helper.getAppdata;
 numRules=length(fis.rule);
 if numRules==0,
     msgStr=['There are no rules for this system.'];
-    statmsg(figNumber,msgStr);
+    helper.statmsg(figNumber,msgStr);
 else
     msgStr=['Translating to ' dispStyle ' format'];
-    statmsg(figNumber,msgStr);
+    helper.statmsg(figNumber,msgStr);
     editHndl=findobj(figNumber,'Tag', 'rulewindow');
     langHndl=findobj(figNumber,'Type','uimenu','Tag', 'lang', 'Checked','on');
     lang=lower(get(langHndl,'Label'));

@@ -338,13 +338,13 @@ if plot_mfs == 1
         set(currTxtHndl,'Color',selectColor,'FontWeight','bold');
         
         mfTypeList=get(mfTypeHndl,'String');
-        mfTypeValue=findrow(mfTypeUpper,mfTypeList);
+        mfTypeValue=helper.findrow(mfTypeUpper,mfTypeList);
         if isempty(mfTypeValue),
             mfTypeList=str2mat(mfTypeList, [' ' mfTypeUpper]);
-            mfTypeValue=findrow(mfTypeUpper,mfTypeList);
+            mfTypeValue=helper.findrow(mfTypeUpper,mfTypeList);
             set(mfTypeHndl,'String',mfTypeList,'Value',mfTypeValue);
             msgStr=['Installing custom membership function "' mfTypeUpper '"'];
-            statmsg(figNumber,msgStr);
+            helper.statmsg(figNumber,msgStr);
         end
         set(mfTypeHndl,'Value',mfTypeValue,'Enable','on');
         
@@ -352,13 +352,13 @@ if plot_mfs == 1
         if ~isequal(varType,'output')
             mfTypeHndlLower=findobj(figNumber,'Type','uicontrol','Tag','mftypelower');
             mfTypeList=get(mfTypeHndlLower,'String');
-            mfTypeValue=findrow(mfTypeLower,mfTypeList);
+            mfTypeValue=helper.findrow(mfTypeLower,mfTypeList);
             if isempty(mfTypeValue),
                 mfTypeList=str2mat(mfTypeList, [' ' mfTypeLower]);
-                mfTypeValue=findrow(mfTypeLower,mfTypeList);
+                mfTypeValue=helper.findrow(mfTypeLower,mfTypeList);
                 set(mfTypeHndlLower,'String',mfTypeList,'Value',mfTypeValue);
                 msgStr=['Installing custom membership function "' mfTypeLower '"'];
-                statmsg(figNumber,msgStr);
+                helper.statmsg(figNumber,msgStr);
             end
             set(mfTypeHndlLower,'Value',mfTypeValue,'Enable','on');
         end

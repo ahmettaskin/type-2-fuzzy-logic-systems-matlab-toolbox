@@ -257,7 +257,7 @@ switch cmd
                 % This is an input or a mamdani output
                 tol=1e-3*(varRange(2)-varRange(1));
                 if mfNum==1,
-                    mfParam=mf2mf([varRange(1) mean(varRange) varRange(2)],'trimf',mfType,tol);
+                    mfParam=helper.mf2mf([varRange(1) mean(varRange) varRange(2)],'trimf',mfType,tol);
                     mfName = ['mf' num2str(mfOldNum + 1)];
                     fis=helper.addMf(fis,varType,varIndex,mfName,mfType,mfParam,ii);
                 else
@@ -266,7 +266,7 @@ switch cmd
                         b=(count-1)*halfWidth+varRange(1);
                         a=b-halfWidth;
                         c=b+halfWidth;
-                        mfParam=mf2mf([a b c],'trimf',mfType,tol);
+                        mfParam=helper.mf2mf([a b c],'trimf',mfType,tol);
                         mfName=['mf' num2str(mfOldNum + count)];
                         if isLower
                             mfParam = helper.lowerMf(mfParam,mfType,varRange);

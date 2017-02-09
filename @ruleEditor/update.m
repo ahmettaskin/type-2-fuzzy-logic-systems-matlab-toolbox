@@ -14,7 +14,7 @@ if numRules>0,
 else
     labelStr=' ';
     msgStr=['No rules for system "' fisName '"'];
-    statmsg(figNumber,msgStr);
+    helper.statmsg(figNumber,msgStr);
 end
 set(hndl, 'Value', 1, 'String',labelStr);
 
