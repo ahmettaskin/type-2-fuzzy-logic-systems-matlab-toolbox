@@ -1,0 +1,47 @@
+[System]
+Name='WuTest2'
+Type='sugeno'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=4
+AndMethod='prod'
+OrMethod='probor'
+ImpMethod='prod'
+AggMethod='sum'
+DefuzzMethod='wtaver'
+TypeRedMethod='KM'
+
+[Input1]
+Name='input1'
+Range=[-1.5 1.5]
+NumMFs=2
+MF1U='mf1U':'trapmf',[-4.2 -1.8 -0.5 1.5 1]
+MF1L='mf1L':'trimf',[-4.5 -1.5 0.5 1]
+MF2U='mf2U':'trapmf',[-1.5 0.5 2 4.1 1]
+MF2L='mf2L':'trimf',[-0.5 1.5 4.5 1]
+
+[Input2]
+Name='input2'
+Range=[-1.5 1.5]
+NumMFs=2
+MF1U='mf1U':'trapmf',[-4.2 -1.8 -0.5 1.5 1]
+MF1L='mf1L':'trimf',[-4.5 -1.5 0.5 1]
+MF2U='mf2U':'trapmf',[-1.5 0.5 2 4.1 1]
+MF2L='mf2L':'trimf',[-0.5 1.5 4.5 1]
+
+[Output1]
+Name='output1'
+CrispInterval='interval'
+Range=[-1 1]
+NumMFs=4
+MF1='mf1':'linear',[2 0 0 1 -1 -1]
+MF2='mf2':'constant',[-0.6 -0.4]
+MF3='mf3':'constant',[0.4 0.6]
+MF4='mf4':'constant',[0.9 1]
+
+[Rules]
+1 1, 1 (1) : 1
+1 2, 2 (1) : 1
+2 1, 3 (1) : 1
+2 2, 4 (1) : 1

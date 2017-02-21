@@ -257,7 +257,7 @@ if plot_mfs == 1
             else
                 for kkk=1:2
                     for k=1:numel(mfParams)/2
-                        mfParamsUpper(1,kkk*k)= mfParams(kkk*k); %% Edit
+                        mfParamsUpper(1,kkk*k)= mfParams(kkk,k);
                         % mfParamsLower=mfParamsUpper;
                     end
                 end
@@ -408,9 +408,9 @@ if plot_mfs == 1
     set(hndl,'Enable','on');
     if strcmp(varType,'output')
         try
-            helper.setCrispInterval(fis.output.crisp);
+        helper.setCrispInterval(fis.output.crisp);
         catch
-            helper.setCrispInterval('crisp');   %% Edit1
+            
         end
         end
     
