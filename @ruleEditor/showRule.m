@@ -37,13 +37,12 @@ if any(ruleIndex-floor(ruleIndex)),
     error('Illegal rule number');
 end
 
-if strcmp(ruleFormat,'verbose') | strcmp(ruleFormat,'symbolic'),
+if strcmp(ruleFormat,'verbose') || strcmp(ruleFormat,'symbolic'),
     inLabels=helper.getFis(fis,'inLabels');
     inMFLabels=helper.getFis(fis,'inMFLabels');
     outLabels=helper.getFis(fis,'outLabels');
     outMFLabels=helper.getFis(fis,'outMFLabels');
     
-    % Establish appropriate typographical symbols
     lftParen='(';
     rtParen=')';
     if strcmp(ruleFormat,'verbose')

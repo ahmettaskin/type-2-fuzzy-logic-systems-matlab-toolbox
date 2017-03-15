@@ -15,41 +15,7 @@ classdef ruleEditor
                 figure(ruleeditor);
                 return
             end
-            %             if isstr(action),
-            %                 if action(1)~='#',
-            %                     % The string "action" is not a switch for this function,
-            %                     % so it must be a disk file
-            %                     % fis=readfis(action);
-            %                     figNumber=gcf;
-            %                     fis=helper.getAppdata;
-            %                     action='#initialize';
-            %                 end
-            %             else
-            %                 % For initialization, the fis matrix is passed in as the parameter
-            %                 fis=action;
-            %                 action='#initialize';
-            %             end;
             
-            %             fisName=fis.name;
-            %             fisType=fis.type;
-            
-            %             if isprop(fis, 'input')
-            %                 numInputs=length(fis.input);
-            %             else
-            %                 numInputs=0;
-            %             end
-            %             if isprop(fis, 'output')
-            %                 numOutputs=length(fis.output);
-            %             else
-            %                 numOutputs=0;
-            %             end
-            
-            %             if isprop(fis, 'rule')
-            %                 numRules=length(fis.rule);
-            %             else
-            %                 numRules=0;
-            %             end
-            %===================================
             % Information for all objects
             frmColor=192/255*[1 1 1];
             btnColor=192/255*[1 1 1];
@@ -78,12 +44,6 @@ classdef ruleEditor
                 'Position',figPos, ...
                 'Tag','ruleedit');
             figPos=get(figNumber,'position');
-            %         set(figNumber, 'WindowStyle', 'docked')
-            %         setFigDockGroup(figNumber, 'Interval Type-2 Fuzzy Logic Systems Toolbox');
-            %====================================
-            % The MENUBAR items
-            % Call fisgui to create the menubar items
-            %fisgui #initialize
             
             %========================================================
             % The MAIN frame
