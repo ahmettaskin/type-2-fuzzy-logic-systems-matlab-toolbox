@@ -147,7 +147,8 @@ switch cmd
             'String','Number of MFs');
         
         %Pop-up menu for number
-        menuTxt=str2mat(' 1',' 2',' 3',' 4',' 5',' 6',' 7',' 8',' 9');
+        menuTxt=str2mat(' 1',' 2',' 3',' 4',' 5',' 6',' 7',' 8',' 9',...
+            ' 10',' 11',' 12',' 13',' 14',' 15',' 16' );
         uicontrol( ...
             'Units','Normalized', ...
             'Style','popupmenu', ...
@@ -197,7 +198,7 @@ switch cmd
         
         figNumber=findall(0,'Tag','mfAddDlg');
         figure(figNumber);
-        fis=get(figNumber,'UserData');
+        fis=helper.getAppdata;
         oldFigNumber=get(gco,'UserData');
         mfNumHndl=findobj(figNumber,'Tag','mfnumber');
         % ii=1 for upper parameters, ii=2 for Lower parameters
@@ -266,12 +267,12 @@ switch cmd
                         b=(count-1)*halfWidth+varRange(1);
                         a=b-halfWidth;
                         c=b+halfWidth;
-                        mfParam=helper.mf2mf([a b c],'trimf',mfType,tol);
+                        mfParam=helper.mf2mf(sort([a b c],'ascend'),'trimf',mfType,tol);
                         mfName=['mf' num2str(mfOldNum + count)];
                         if isLower
-                            mfParam = helper.lowerMf(mfParam,mfType,varRange);
+                            mfParam = helper.lowerMf(sort(mfParam,'ascend'),mfType,varRange);
                         end
-                        fis=helper.addMf(fis,varType,varIndex,mfName,mfType,mfParam,ii);
+                        fis=helper.addMf(fis,varType,varIndex,mfName,mfType,sort(mfParam,'ascend'),ii);
                     end
                 end
             end
