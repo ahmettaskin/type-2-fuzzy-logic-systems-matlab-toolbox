@@ -637,11 +637,12 @@ if strcmp(fisType,'sugeno') & strcmp(varType,'output'),
         fis.(varType)(varIndex).mf(currMF).type=newType;
         %if length(oldParams)==2
         %if isInterval
-        fis.(varType)(varIndex).mf(currMF).params=[zeros(1,numInputs) oldParams(1)];
+        newParams=[zeros(1,numInputs) oldParams(1)];
         for k=1:numInputs
-            fis.(varType)(varIndex).mf(currMF).params(2,k)=0;
+            newParams(end+1)=0;
         end
-        fis.(varType)(varIndex).mf(currMF).params(2,k+1)=1;
+        newParams(end+1)=oldParams(1);
+        fis.(varType)(varIndex).mf(currMF).params = newParams;
         %else
         %fis.(varType)(varIndex).mf(currMF).params=[zeros(1,numInputs) oldParams];
         %end
@@ -832,9 +833,9 @@ for ii=1:2
                 newParamsUse(1,2)=newParamsLower;
             catch
                 for kk=1:length(newParamsLower)
-                    newParamsUse(2,kk) = newParamsLower(kk);
+                    newParamsUse(2,kk) = newParamsLower(kk);                    
                 end
-                
+                newParamsUse=[newParamsUse(1,:),newParamsUse(2,:)];                
             end
         elseif ~helper.isInt(currMF/2) % Upper Membership Function
             newParamsUse=newParamsLower;
