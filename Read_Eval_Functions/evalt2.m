@@ -38,9 +38,7 @@ if nargin == 3
         else
         end
     end
-    for i=1:length(input)
-        input(1,i)=input(i);
-    end
+    input=input';
     if ischar(TRMethod)
         TRMethod=str2num(TRMethod);
     end
@@ -115,10 +113,10 @@ for n=1:NofRule
     elseif strcmpi(outputType,'linear')
         outMFPar = t2fis.output.mf(t2fis.rule(n).consequent).params;
         outMFParUpper =  outMFPar(1,1:nInput);
-        C(n,:)=outMFParUpper*input'+outMFPar(1,end);
+        C(n,:)=outMFParUpper*input'+outMFPar(1,nInput+1);
         
-        outMFParLower =  outMFPar(2,1:nInput);
-        C(n,2)=outMFParLower*input'+outMFPar(2,end);
+        outMFParLower =  outMFPar(1,end/2+1:end-1);
+        C(n,2)=outMFParLower*input'+outMFPar(1,end);
         
     end
 end

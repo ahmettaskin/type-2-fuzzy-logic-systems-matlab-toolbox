@@ -255,10 +255,11 @@ if plot_mfs == 1
                      mfParamsUpper(1,k)= mfParams(k);
                 end                                
             else
+                pos=1;
                 for kkk=1:2
                     for k=1:numel(mfParams)/2
-                        mfParamsUpper(1,kkk*k)= mfParams(kkk*k); %% Edit
-                        % mfParamsLower=mfParamsUpper;
+                        mfParamsUpper(1,pos)= mfParams(pos);
+                        pos=pos+1;
                     end
                 end
             end            
