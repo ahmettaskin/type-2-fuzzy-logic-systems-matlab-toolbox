@@ -44,7 +44,8 @@ for i=1:numInputs
     Hndl=findobj(figNumber, 'Tag', ['ruleinmake' num2str(i)]);
     rulevarindex=rulelist(index).antecedent(i);
     if rulevarindex==0
-        set(Hndl, 'Value', length(fis.input(i).mf)+1);
+        numMFs=size(fis.input(i).mf);
+        set(Hndl, 'Value', numMFs(2)+1);
     else
         notHndl=findobj(figNumber, 'Tag', ['ruleinradio' num2str(i)]);
         if rulevarindex<0

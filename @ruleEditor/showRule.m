@@ -2,11 +2,13 @@ function [outStr,obj] = showRule(obj,fis,ruleIndex)
 numInputs=length(fis.input);
 numOutputs=length(fis.output);
 for i=1:length(fis.input)
-    numInputMFs(i)=length(fis.input(i).mf);
+    numMFs = size(fis.input(i).mf);
+    numInputMFs(i)=numMFs(2);
 end
 % totalInputMFs=sum(numInputMFs);
 for i=1:length(fis.output)
-    numOutputMFs(i)=length(fis.output(i).mf);
+    numMFs = size(fis.output(i).mf);
+    numOutputMFs(i)=numMFs(2);
 end
 % totalOutputMFs=sum(numOutputMFs);
 numRules=length(fis.rule);

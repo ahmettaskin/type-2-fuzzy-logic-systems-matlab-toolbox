@@ -11,7 +11,7 @@ classdef ruleEditor
             %                 action=newFis;
             %             end 
             ruleeditor = findall(0,'type','figure','Tag','ruleedit');
-            if ~isempty(ruleeditor) && isequal(action,'initilaize')
+            if ~isempty(ruleeditor)
                 figure(ruleeditor);
                 return
             end
@@ -248,7 +248,8 @@ for i=1:numInputs
         notvalue=-1;
     end
     value=get(nameHndl, 'Value');
-    if value>length(fis.input(i).mf) %| ~isempty(fis.input(i).mf)
+    numMFs=size(fis.input(i).mf);
+    if value>numMFs(2) %| ~isempty(fis.input(i).mf)
         str(i)=0;
     else
         str(i)=value*notvalue;

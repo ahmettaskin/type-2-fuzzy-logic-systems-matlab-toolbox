@@ -10,7 +10,8 @@ end
 numInputs=length(fis.input);
 numOutputs=length(fis.output);
 for i=1:length(fis.input)
- numInputMFs(i)=length(fis.input(i).mf);
+ numMFs=size(fis.input(i).mf);
+ numInputMFs(i)=numMFs(2);
 end
 totalInputMFs=sum(numInputMFs);
 for i=1:length(fis.output)

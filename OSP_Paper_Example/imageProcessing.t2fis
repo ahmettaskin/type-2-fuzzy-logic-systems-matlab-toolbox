@@ -1,0 +1,39 @@
+[System]
+Name='imageProcessing2'
+Type='sugeno'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=2
+AndMethod='prod'
+OrMethod='probor'
+ImpMethod='prod'
+AggMethod='sum'
+DefuzzMethod='wtaver'
+TypeRedMethod='Karnik-Mendel'
+
+[Input1]
+Name='Ix'
+Range=[-1 1]
+NumMFs=1
+MF1U='IxU':'gaussmf',[0.1 0 1]
+MF1L='IxL':'gaussmf',[0.1 0 0.5]
+
+[Input2]
+Name='Iy'
+Range=[-1 1]
+NumMFs=1
+MF1U='IyU':'gaussmf',[0.1 0 1]
+MF1L='IyL':'gaussmf',[0.1 0 0.5]
+
+[Output1]
+Name='out'
+CrispInterval='crisp'
+Range=[-1 1]
+NumMFs=2
+MF1='black':'constant',[1 1]
+MF2='white':'constant',[0 0]
+
+[Rules]
+1 1, 1 (1) : 1
+-1 -1, 2 (1) : 1

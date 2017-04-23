@@ -42,7 +42,8 @@ if ~isempty(fis.input)
         if MFid==1
             nOfMF=0;
             % Add Upper Membership function
-            MFindex=length(fis.input(varIndex).mf)+1;
+            numMFs=size(fis.input(varIndex).mf);
+            MFindex=numMFs(2)+1;
             out.input(varIndex).mf(1,MFindex).name=[MFLabel 'U'];
             out.input(varIndex).mf(1,MFindex).type=MFType;
             MFParams(end+1)=1;

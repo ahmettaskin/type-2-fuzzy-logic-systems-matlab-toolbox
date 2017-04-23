@@ -344,13 +344,13 @@ if varIndex ~= 0
     if strcmp(varType, 'input'),
         inputNames=get_inputNames(fis);
         inputRanges = get_inputRanges(fis);
-        set(varNameHndl,'String',[' ' inputNames(varIndex)],'Enable','on');
+        set(varNameHndl,'String',['' inputNames(varIndex)],'Enable','on');
         set(varRangeHndl,'String',mat2str(inputRanges{varIndex}));
     else
         outputNames=get_outputNames(fis);
         outputRanges = get_outputRanges(fis);
         
-        set(varNameHndl,'String',[' ' outputNames(varIndex)],'Enable','on');
+        set(varNameHndl,'String',['' outputNames(varIndex)],'Enable','on');
         set(varRangeHndl,'String',mat2str(outputRanges{varIndex}));
     end
     varTypeHndl=findobj(figNumber,'Type','uicontrol','Tag','currvartype');

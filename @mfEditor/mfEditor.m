@@ -333,6 +333,7 @@ classdef mfEditor
             hndl=uicontrol( ...
                 'Style','edit', ...
                 'Units','Normalized', ...
+                'Enable','off', ...
                 'Position',pos, ...
                 'HorizontalAlignment','left', ...
                 'BackgroundColor',editColor, ...
@@ -933,42 +934,33 @@ currMF=param.CurrMF;
 
 if strcmp(varType,'input'),
     backgroundColor=inputColor;
-    if isequal(hndlupper,mfParamHndl)
-        if helper.isInt(currMF/2)
-            currMF-1;
-        end
-        oldName=eval(['fis.' varType '(' num2str(varIndex),').mf(' num2str(currMF),').name']);
-        newName=deblank(get(hndlupper,'String'));
-        % Strip off the leading space
-        newName=fliplr(deblank(fliplr(newName)));
-        % Replace any remaining blanks with underscores
-        newName(find(newName==32))=setstr(95*ones(size(find(newName==32))));
-        txtHndl=findobj(figNumber,'Type','text','UserData',currMF);
-        set(txtHndl,'Color',backgroundColor);
-        set(txtHndl,'String',newName);
-        set(txtHndl,'Color',selectColor);
-        set(hndlupper,'String',[' ' newName]);
-        eval(['fis.' varType '(' num2str(varIndex) ').mf(' num2str(currMF) ').name=''' newName  '''' '; ']);
-        
-        
-        
-    else
-        if helper.isInt(currMF/2)
-            currMF+1;
-        end
-        oldName=eval(['fis.' varType '(' num2str(varIndex),').mf(' num2str(currMF),').name']);
-        newName=deblank(get(hndllower,'String'));
-        % Strip off the leading space
-        newName=fliplr(deblank(fliplr(newName)));
-        % Replace any remaining blanks with underscores
-        newName(find(newName==32))=setstr(95*ones(size(find(newName==32))));
-        txtHndl=findobj(figNumber,'Type','text','UserData',currMF);
-        set(txtHndl,'Color',backgroundColor);
-        set(txtHndl,'String',newName);
-        set(txtHndl,'Color',selectColor);
-        set(hndllower,'String',[' ' newName]);
-        eval(['fis.' varType '(' num2str(varIndex) ').mf(' num2str(currMF) ').name=''' newName  '''' '; ']);
+    if helper.isInt(currMF/2)
+        currMF=currMF-1;
     end
+    oldName=eval(['fis.' varType '(' num2str(varIndex),').mf(' num2str(currMF),').name']);
+    newName=deblank(get(hndlupper,'String'));
+    % Strip off the leading space
+    newName=fliplr(deblank(fliplr(newName)));
+    % Replace any remaining blanks with underscores
+    newName(find(newName==32))=setstr(95*ones(size(find(newName==32))));
+    newNameUpper=strcat(newName,'U');
+    newNameLower=strcat(newName,'L');
+    txtHndl=findobj(figNumber,'Type','text','UserData',currMF);
+    set(txtHndl,'Color',backgroundColor);
+    set(txtHndl,'String',newNameUpper);
+    set(txtHndl,'Color',selectColor);
+    set(hndlupper,'String',[' ' newNameUpper]);
+    eval(['fis.' varType '(' num2str(varIndex) ').mf(' num2str(currMF) ').name=''' newNameUpper  '''' '; ']);
+    
+    currMF=currMF+1;
+    oldName=eval(['fis.' varType '(' num2str(varIndex),').mf(' num2str(currMF),').name']);
+    txtHndl=findobj(figNumber,'Type','text','UserData',currMF);
+    set(txtHndl,'Color',backgroundColor);
+    set(txtHndl,'String',newNameLower);
+    set(txtHndl,'Color',selectColor);
+    set(hndllower,'String',[' ' newNameLower]);
+    eval(['fis.' varType '(' num2str(varIndex) ').mf(' num2str(currMF) ').name=''' newNameLower  '''' '; ']);
+    
     
 else % output
     backgroundColor=outputColor;
@@ -1123,7 +1115,7 @@ if plot_mfs == 1
                 % Set the MF name Lower
                 mfName=localgetmfparam(fis, varType, varIndex, newCurrMF, 'name');
                 mfNameHndl=findobj(figNumber,'Type','uicontrol','Tag','mfname Lower');
-                set(mfNameHndl,'String',[' ' mfName],'Enable','on');
+                set(mfNameHndl,'String',[' ' mfName],'Enable','off');
                 
             else % selected is Upper
                 currLineHndlLower=findobj(mainAxes,'Tag','mfline','UserData',newCurrMF+1);
@@ -1138,7 +1130,7 @@ if plot_mfs == 1
                 % Set the MF name Lower
                 mfName=localgetmfparam(fis, varType, varIndex, newCurrMF+1, 'name');
                 mfNameHndl=findobj(figNumber,'Type','uicontrol','Tag','mfname Lower');
-                set(mfNameHndl,'String',[' ' mfName],'Enable','on');
+                set(mfNameHndl,'String',[' ' mfName],'Enable','off');
             end
         end
         

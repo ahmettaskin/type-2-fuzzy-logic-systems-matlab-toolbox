@@ -315,7 +315,7 @@ if plot_mfs == 1
                 % Set the MF name Lower
                 mfName=localgetmfparam(fis, varType, varIndex, newCurrMF, 'name');
                 mfNameHndl=findobj(figNumber,'Type','uicontrol','Tag','mfname Lower');
-                set(mfNameHndl,'String',[' ' mfName],'Enable','on');
+                set(mfNameHndl,'String',[' ' mfName],'Enable','off');
                 
             else % selected is Upper
                 currLineHndlLower=findobj(mainAxes,'Tag','mfline','UserData',newCurrMF+1);
@@ -330,7 +330,7 @@ if plot_mfs == 1
                 % Set the MF name Lower
                 mfName=localgetmfparam(fis, varType, varIndex, newCurrMF+1, 'name');
                 mfNameHndl=findobj(figNumber,'Type','uicontrol','Tag','mfname Lower');
-                set(mfNameHndl,'String',[' ' mfName],'Enable','on');
+                set(mfNameHndl,'String',[' ' mfName],'Enable','off');
             end
         end
         

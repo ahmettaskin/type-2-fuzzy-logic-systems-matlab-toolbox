@@ -15,7 +15,8 @@ end
 
 for i=1:numInputs
     if isfield(fis.input(i), 'mf')
-        numInputMFs(i)=length(fis.input(i).mf);
+        numMFs=size(fis.input(i).mf);
+        numInputMFs(i)=numMFs(2);
     else
         numInputMFs(i)=0;
     end

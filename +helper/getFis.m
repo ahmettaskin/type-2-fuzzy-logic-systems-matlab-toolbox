@@ -56,7 +56,8 @@ switch nargin
             case 'numinputmfs'
                 numInputMFs=[];
                 for i=1:length(fis.input)
-                    numInputMFs(i)=length(fis.input(i).mf);
+                    numMFs=size(fis.input(i).mf);
+                    numInputMFs(i)=numMFs(2);
                 end
                 out=numInputMFs;
             case 'numoutputmfs'
@@ -103,7 +104,8 @@ switch nargin
                 
             case 'inmfs'
                 for i=1:numInputs
-                    out(i)=length(fis.input(i).mf);
+                    numMFs=size(fis.input(i).mf);
+                    out(i)=numMFs(2);
                 end
                 
             case 'outmfs'
@@ -114,7 +116,8 @@ switch nargin
             case 'inmflabels'
                 out=[];
                 for i=1:numInputs
-                    for j=1:length(fis.input(i).mf)
+                    numMFs=size(fis.input(i).mf);
+                    for j=1:numMFs(2)
                         out=strvcat(out, fis.input(i).mf(2*j).name(1:end-1));
                         %                         out=out(1:end-1);
                     end
@@ -130,8 +133,9 @@ switch nargin
                 
             case 'inmftypes'
                 out=[];
-                for i=1:numInputs
-                    for j=1:length(fis.input(i).mf)
+                for i=1:numInputs    
+                    numMFs=size(fis.input(i).mf);
+                    for j=1:numMFs(2)
                         out=strvcat(out, fis.input(i).mf(j).type);
                     end
                 end
@@ -147,13 +151,15 @@ switch nargin
             case 'inmfparams'
                 numInputMFs=[];
                 for i=1:length(fis.input)
-                    numInputMFs(i)=length(fis.input(i).mf);
+                    numMFs=size(fis.input(i).mf);
+                    numInputMFs(i)=numMFs(2);
                 end
                 totalInputMFs=sum(numInputMFs);
                 k=1;
                 out=zeros(totalInputMFs, 4);
                 for i=1:numInputs
-                    for j=1:length(fis.input(i).mf)
+                    numMFs=size(fis.input(i).mf);
+                    for j=1:numMFs(2)
                         temp=fis.input(i).mf(j).params;
                         out(k,1:length(temp))=temp;
                         k=k+1;
@@ -286,9 +292,11 @@ switch nargin
                     case 'range'
                         out=fis.input(varIndex).range;
                     case 'nummfs'
-                        out=length(fis.input(varIndex).mf);
+                        numMFs=size(fis.input(varIndex).mf);
+                        out=numMFs(2);
                     case 'mflabels'
-                        numMFs=length(fis.input(varIndex).mf);
+                        numMfs=size(fis.input(varIndex).mf);
+                        numMFs=numMfs(2);
                         MFList=[];
                         for n=1:numMFs,
                             MFList=strvcat(MFList,fis.input(varIndex).mf(1,n).name(1:end-1));
@@ -376,9 +384,9 @@ switch nargin
                     error('FuzzyLogic:FISVariablesError', ...
                         errStr)
                 end
-                
-                if MFIndex>length(fis.input(varIndex).mf),
-                    errStr=['There are only ',int2str(length(fis.input(varIndex).mf)), ...
+                numMFs=size(fis.input(varIndex).mf);
+                if MFIndex>numMFs(2),
+                    errStr=['There are only ',int2str(numMFs(2)), ...
                         ' MFs associated with that variable'];
                     error('FuzzyLogic:FISVariablesError', ...
                         errStr)

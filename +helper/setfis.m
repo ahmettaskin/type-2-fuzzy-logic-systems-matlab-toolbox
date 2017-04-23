@@ -48,7 +48,8 @@ case 3
       
    case 'inmfparams'
       for i=1:numInputs
-         numInputMFs(i)=length(fis.input(i).mf);
+         numMFs=size(fis.input(i).mf);
+         numInputMFs(i)=numMFs(2);
       end
       totalInputMFs=sum(numInputMFs);
       k=1;
@@ -162,9 +163,9 @@ case 7
       if varIndex>length(fis.input)
          error(['There are not that many input variables.']);
       end
-      
-      if MFIndex>length(fis.input(varIndex).mf),
-         errStr=['There are only ',int2str(length(fis.input(varIndex).mf)), ...
+      numMFs=size(fis.input(varIndex).mf);
+      if MFIndex>numMFs(2),
+         errStr=['There are only ',int2str(numMFs(2)), ...
                ' MFs associated with that variable'];
          error(errStr)
       end

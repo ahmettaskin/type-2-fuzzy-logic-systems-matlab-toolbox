@@ -108,10 +108,12 @@ for varIndex=1:length(fis.input),
     fprintf(fid,str);
     str=['Range=' mat2str(fis.input(varIndex).range) '\n'];
     fprintf(fid,str);
-    str=['NumMFs=' num2str(length(fis.input(varIndex).mf)) '\n'];
+    numMfs=size(fis.input(varIndex).mf);
+    numMfs=numMfs(2);
+    str=['NumMFs=' num2str(numMfs) '\n'];
     fprintf(fid,str);
     
-    for mfIndex=1:2*length(fis.input(varIndex).mf),
+    for mfIndex=1:2*numMfs,
         if ~helper.isInt(mfIndex/2)
             str=['MF' num2str(round(mfIndex/2)) 'U' '=''' fis.input(varIndex).mf(mfIndex).name ''':'];
             fprintf(fid,str);
