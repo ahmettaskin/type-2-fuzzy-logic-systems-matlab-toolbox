@@ -126,7 +126,7 @@ classdef mainEditor
                 'String',labelStr);
             
             name='currvarname';
-            pos=[FigLeft2+0.2 top-step LenghtH LenghtV];
+            pos=[FigLeft2+0.2 top-step LenghtH LenghtV+0.01];
             inputVarNameHndl=uicontrol( ...
                 'Style','edit', ...
                 'HorizontalAlignment','left', ...
@@ -397,6 +397,20 @@ if strcmp(newTRmethod,'BMM')
     drawnow;
     
     fis.typeRedMethod=[newTRmethod '(' answer{1} ',' answer{2} ')'];
+elseif strcmp(newTRmethod,'custom')
+    try
+        h=warndlg('Your costom Type Reduction method function have.');
+        waitfor(h);
+        [loadfis,path]=uigetfile('*.m','Select your Type Reduction m function.');
+        pathtocopy=which('evalt2.m');
+        parts = strfind(pathtocopy, '\');
+        pathtocopy=pathtocopy(1:parts(end));
+        copyfile([path loadfis], pathtocopy, 'f');
+        fis.typeRedMethod=loadfis(1:end-2);
+        msgbox('Your custom function successfully loaded.','Custom TR Function');
+    catch
+        errordlg('Your custom function loaded.','Custom TR Function');
+    end
 else
     fis.typeRedMethod=newTRmethod;
 end

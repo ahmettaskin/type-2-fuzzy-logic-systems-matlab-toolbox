@@ -24,7 +24,7 @@ for i=1:100
     out(i,1) = evalfis(input,fis);
     
     fist2 = readt2fis('Test4Input2.t2fis');
-    out(i,2) = evalt2(fist2,input);
+    out(i,2) = evalt2(input,fist2);
 end
 
 if out(:,1)==out(:,2)

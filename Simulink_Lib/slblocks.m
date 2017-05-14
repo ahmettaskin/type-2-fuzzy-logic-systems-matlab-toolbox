@@ -1,14 +1,4 @@
 function blkStruct = slblocks  
-% SLBLOCKS Defines the block library for AVLib Blockset
-
-% Copyright (c) 2013, AVL Software and Functions GmbH
-% $Revision: 1.1 $, $Date: 2013/10/25 06:49:01VET $ by $Author: halatcii $
-
-
-% The function that will be called when the user double-clicks on  
-% the library's name. ;  
-%blkStruct.OpenFcn = 'AVLib';  
-
 % Define the Browser structure array, the first element contains the
 % information for the Simulink block library and the second for the
 % Simulink Extras block library.

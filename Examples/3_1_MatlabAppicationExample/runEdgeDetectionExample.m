@@ -30,7 +30,7 @@ image(Iy,'CDataMapping','scaled')
 colormap('gray')
 title('Iy')
 
-t2fis=readt2fis('imageProcessing2.t2fis');
+t2fis=readt2fis('imageProcessing.t2fis');
 
 Ieval = zeros(size(I));
 for ii = 1:size(I,1)

@@ -45,23 +45,31 @@ if nargin == 3
     t2fis=t2fisstruct;
     
     if TRMethod==0
-        
+        TRMethod='KM';
     elseif TRMethod==1
         t2fis.typeRedMethod='KM';
+        TRMethod='KM';
     elseif TRMethod==2
         t2fis.typeRedMethod='EKM';
+        TRMethod='EKM';
     elseif TRMethod==3
         t2fis.typeRedMethod='IASC';
+        TRMethod='IASC';
     elseif TRMethod==4
         t2fis.typeRedMethod='EIASC';
+        TRMethod='EIASC';
     elseif TRMethod==5
         t2fis.typeRedMethod='EODS';
+        TRMethod='EODS';
     elseif TRMethod==6
         t2fis.typeRedMethod='WM';
+        TRMethod='WM';
     elseif TRMethod==7
         t2fis.typeRedMethod='NT';
+        TRMethod='NT';
     elseif TRMethod==8
         t2fis.typeRedMethod='BMM';
+        TRMethod='BMM';
     elseif TRMethod==9
         t2fis.typeRedMethod='Custom';
     end
@@ -161,9 +169,8 @@ switch TRMethod
         TRMethodfunc='t2f_TR_NT';
     case 'BMM'
         TRMethodfunc='t2f_TR_BMM';
-    case 'Custom'
     otherwise
-        TRMethodfunc='t2f_TR_KM';
+        TRMethodfunc=TRMethod;
 end
 
 

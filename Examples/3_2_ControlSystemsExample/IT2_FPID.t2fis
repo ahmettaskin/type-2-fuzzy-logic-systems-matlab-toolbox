@@ -11,6 +11,7 @@ ImpMethod='prod'
 AggMethod='sum'
 DefuzzMethod='wtaver'
 TypeRedMethod='Karnik-Mendel'
+outputType='interval'
 
 [Input1]
 Name='input1'
