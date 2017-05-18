@@ -9,6 +9,12 @@ title('Input Image in Grayscale')
 % image(Igray,'CDataMapping','scaled');
 % colormap('gray')
 % title('Input Image in Grayscale')
+
+%% Define Type Reduction Method 
+%  TRMethod='KM' -> 1, 'EKM'-> 2, 'IASC' -> 3, 'EIASC' -> 4, 'EODS' -> 5, 'WM' -> 6, 'NT' -> 7, 'BMM' -> 8 
+TRMethod = 8;
+
+%%
 I = double(Igray);
 % 
 classType = class(Igray);
@@ -36,7 +42,7 @@ Ieval = zeros(size(I));
 for ii = 1:size(I,1)
     disp(ii);
     for jj = 1:length(I)
-        Ieval(ii,jj) = evalt2([(Ix(ii,jj));(Iy(ii,jj));]',t2fis); 
+        Ieval(ii,jj) = evalt2([(Ix(ii,jj));(Iy(ii,jj));]',t2fis,TRMethod); 
     end
 end
 

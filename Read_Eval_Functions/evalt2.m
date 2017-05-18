@@ -29,16 +29,23 @@ if nargin == 3
     try
         t2fisstruct=evalin('base',t2fis);
     catch me
-        if ~isempty(which(t2fis))
-            [path,~]=fileparts(which(t2fis));
-            t2fisstruct=readt2fis(t2fis,path);
-        elseif ~isempty(which([t2fis '.t2fis']))
-            [path,~]=fileparts(which([t2fis '.t2fis']));
-            t2fisstruct=readt2fis([t2fis '.t2fis'],path);
+        if isstruct(t2fis)
+            t2fisstruct=t2fis;
         else
+            if ~isempty(which(t2fis))
+                [path,~]=fileparts(which(t2fis));
+                t2fisstruct=readt2fis(t2fis,path);
+            elseif ~isempty(which([t2fis '.t2fis']))
+                [path,~]=fileparts(which([t2fis '.t2fis']));
+                t2fisstruct=readt2fis([t2fis '.t2fis'],path);
+            else
+            end
         end
     end
-    input=input';
+    sizeInput = size(input);
+    if length(input) > sizeInput(2)
+        input=input';
+    end    
     if ischar(TRMethod)
         TRMethod=str2num(TRMethod);
     end
