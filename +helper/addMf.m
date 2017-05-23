@@ -1,39 +1,16 @@
+%  IT2-FLS Toolbox is free software: you can redistribute it and/or modify
+%     it under the terms of the GNU General Public License as published by
+%     the Free Software Foundation, either version 3 of the License, or
+%     (at your option) any later version.
+% 
+%     IT2-FLS Toolbox is distributed in the hope that it will be useful,
+%     but WITHOUT ANY WARRANTY; without even the implied warranty of
+%     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%     GNU General Public License for more details.
+% 
+%     You should have received a copy of the GNU General Public License
+%     along with IT2-FLS Toolbox.  If not, see <http://www.gnu.org/licenses/>.
 function out=addMf(fis,varType,varIndex,MFLabel,MFType,MFParams,MFid)
-%  Synopsis
-%  a = addmf(a,varType,varIndex,mfName,mfType,mfParams)
-%
-%  Description
-%  A membership function can only be added to a variable name for an FIS that
-%  already exists. Indices are assigned to membership functions in the order
-%  in which they are added, so the first membership function added to a
-%  variable will always be known as membership function number one for that
-%  variable. You cannot add a membership function to input variable number two
-%  of a system if only one input has been defined.
-%  The function requires six input arguments in this order:
-%      A MATLAB variable name of a FIS structure in the workspace
-%      A string representing the type of the variable you want to add the
-%         membership function to (input or output)
-%      The index of the variable you want to add the membership function to
-%      A string representing the name of the new membership function
-%      A string representing the type of the new membership function
-%      The vector of parameters that specify the membership function.
-%
-%  Example
-%  a=newfis('tipper');
-%  a=addvar(a,'input','service',[0 10]);
-%  a=addmf(a,'input',1,'poor','gaussmf',[1.5 0]);
-%  a=addmf(a,'input',1,'good','gaussmf',[1.5 5]);
-%  a=addmf(a,'input',1,'excellent','gaussmf',[1.5 10]);
-%  plotmf(a,'input',1)
-%
-%  See also ADDRULE, ADDVAR, PLOTMF, RMMF, RMVAR
-
-%  Kelly Liu 7-10-96
-%  Copyright 1994-2002 The MathWorks, Inc.
-%  $Revision: 1.16 $  $Date: 2002/04/14 22:21:31 $
-
-% numInputs=length(fis.input);
-% numOutputs=length(fis.output);
 persistent nOfMF
 
 out=fis;

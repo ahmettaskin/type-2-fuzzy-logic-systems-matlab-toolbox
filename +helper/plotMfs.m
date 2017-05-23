@@ -1,33 +1,16 @@
+%  IT2-FLS Toolbox is free software: you can redistribute it and/or modify
+%     it under the terms of the GNU General Public License as published by
+%     the Free Software Foundation, either version 3 of the License, or
+%     (at your option) any later version.
+% 
+%     IT2-FLS Toolbox is distributed in the hope that it will be useful,
+%     but WITHOUT ANY WARRANTY; without even the implied warranty of
+%     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%     GNU General Public License for more details.
+% 
+%     You should have received a copy of the GNU General Public License
+%     along with IT2-FLS Toolbox.  If not, see <http://www.gnu.org/licenses/>.
 function [xOut,yOut,x2Out,y2Out]=plotMfs(fis,varType,varIndex,numPts)
-%PLOTMF Display all of the membership functions for a given variable.
-%   PLOTMF(fismat,varType,varIndex) plots all of the membership functions
-%   in the FIS called fismat associated with a given variable whose type
-%   (input or output) and index are respectively given by varType and
-%   varIndex. This function can also be used with the MATLAB function
-%   subplot.
-%
-%   [xOut,yOut]=PLOTMF(fismat,varType,varIndex) returns the x and y data
-%   points associated with the membership functions without plotting them.
-%
-%   PLOTMF(fismat,varType,varIndex,numPts) generates the same plot with
-%   exactly numPts points plotted along the curve.
-%
-%   For example:
-%
-%           a=newfis('tipper');
-%           a=addvar(a,'input','service',[0 10]);
-%           a=addmf(a,'input',1,'poor','gaussmf',[1.5 0]);
-%           a=addmf(a,'input',1,'good','gaussmf',[1.5 5]);
-%           a=addmf(a,'input',1,'excellent','gaussmf',[1.5 10]);
-%           plotmf(a,'input',1)
-%
-%   See also EVALMF, PLOTFIS.
-
-%   Ned Gulley, 10-30-94, Kelly Liu  7-11-96
-%   Copyright 1994-2002 The MathWorks, Inc.
-%   $Revision: 1.17.2.1 $  $Date: 2010/12/27 01:12:54 $
-
-%====================================
 if nargin<4, numPts=181; end
 
 fisType=fis.type;
