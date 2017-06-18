@@ -6,7 +6,7 @@ Download or clone the repository into a convenient directory.
 Open MATLAB 2015a or a newer version.
 Then run "fuzzyt2.m" which locates at the root of project.
 
-# How to the examples
+# How to run examples in the repository
 
 The repositort includes 2 examples. First one is and edge detection of an image, the secon one is an control example by using an Interval Type-2 Fuzzy Logic controller.
 
