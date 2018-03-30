@@ -421,7 +421,7 @@ if plot_mfs == 1
     set(hndl,'Enable','on');
     if strcmp(varType,'output')
         try
-            helper.setCrispInterval(fis.output.crisp);
+            helper.setCrispInterval(fis.output(1).crisp);
         catch
             helper.setCrispInterval('crisp');   %% Edit1
         end

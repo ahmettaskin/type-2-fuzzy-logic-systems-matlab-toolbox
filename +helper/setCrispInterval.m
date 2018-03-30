@@ -74,13 +74,13 @@ switch cmd
         set(HandlInterval,'value',0);
         set(HandlCrisp,'value',1);
         intval=get(HandlInterval,'value');
-        fis.output.crisp='crisp';
+        fis.output(1).crisp='crisp';
         helper.setAppdata(fis);
     case 'interval'
         set(HandlInterval,'value',1);
         set(HandlCrisp,'value',0);
         crispval=get(HandlCrisp,'value');
-        fis.output.crisp='interval';
+        fis.output(1).crisp='interval';
         helper.setAppdata(fis);
     case 'input'
         %% Upper Membership Function Handles

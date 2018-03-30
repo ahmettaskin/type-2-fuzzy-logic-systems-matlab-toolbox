@@ -25,9 +25,16 @@ upperyl=min(sum(lowerY.*(lowerF))/sum(lowerF),sum(lowerY.*(upperF))/sum(upperF))
 
 loweryr=min(sum(upperY.*(lowerF))/sum(lowerF),sum(upperY.*(upperF))/sum(upperF));
 
-loweryl=upperyl-(sum(upperF-lowerF)/sum(upperF)*sum(lowerF))*sum(lowerF.*(lowerY-lowerY(1)))*sum(upperF.*(lowerY(end)-lowerY))/(sum(lowerF.*(lowerY-lowerY(1)))+sum(upperF.*(lowerY(end)-lowerY)));
+loweryl=upperyl-(sum(upperF-lowerF)/sum(upperF)*sum(lowerF)) * sum(lowerF.*(lowerY-lowerY(1))) * sum(upperF.*(lowerY(end)-lowerY)) / (sum(lowerF.*(lowerY-lowerY(1)))+sum(upperF.*(lowerY(end)-lowerY)));
 
 upperyr=loweryr+(sum(upperF-lowerF)/sum(upperF)*sum(lowerF))*sum(upperF.*(upperY-upperY(1)))*sum(lowerF.*(upperY(end)-upperY))/(sum(upperF.*(upperY-upperY(1)))+sum(lowerF.*(upperY(end)-upperY)));
+if isnan(loweryl)
+    loweryl=upperyl;    
+end
+if isnan(upperyr)
+    upperyr=loweryr;    
+end
+
 
 yLeft=(loweryl+upperyl)/2;
 yRight=(loweryr+upperyr)/2;

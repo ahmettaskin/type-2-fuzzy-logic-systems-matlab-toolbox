@@ -162,6 +162,7 @@ newIt2fls=evalin('base',answer{1,1});
 hFuzzy=findall(0,'Tag','fuzzyt2');
 close(hFuzzy)
 command='new';
+mainEditor(newIt2fls);
 end
 
 function obj = saveFile(~, ~, obj)
