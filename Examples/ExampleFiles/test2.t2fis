@@ -1,0 +1,61 @@
+[System]
+Name='test2'
+Type='sugeno'
+Version=2.0
+NumInputs=3
+NumOutputs=1
+NumRules=4
+AndMethod='prod'
+OrMethod='probor'
+ImpMethod='prod'
+AggMethod='sum'
+DefuzzMethod='wtaver'
+TypeRedMethod='NT'
+outputType='interval'
+
+[Input1]
+Name='x1'
+Range=[-1 1]
+NumMFs=3
+MF1U='x1-N':'trimf',[-1.8 -1 -0.2 1]
+MF1L='x1-N':'trimf',[-1.6 -1 -0.4 0.7]
+MF2U='x1-Z':'trimf',[-0.8 0 0.8 1]
+MF2L='mf2L':'trimf',[-0.6 0 0.6 0.7]
+MF3U='x1-P':'trimf',[0.2 1 1.8 1]
+MF3L='mf3L':'trimf',[0.4 1 1.6 0.7]
+
+[Input2]
+Name='x2'
+Range=[-1 1]
+NumMFs=3
+MF1U='x2-N':'gaussmf',[0.4247 -1 1]
+MF1L='mf1L':'gaussmf',[0.21235 -1 0.5]
+MF2U='x2-Z':'gaussmf',[0.4247 0 1]
+MF2L='mf2L':'gaussmf',[0.21235 0 0.5]
+MF3U='x2-P':'gaussmf',[0.4247 1 1]
+MF3L='mf3L':'gaussmf',[0.21235 1 0.5]
+
+[Input3]
+Name='x3'
+Range=[-1 1]
+NumMFs=3
+MF1U='x3-N':'trapmf',[-1.9 -1.1 -0.9 -0.1 1]
+MF1L='mf1L':'gaussmf',[0.21235 -1 0.5]
+MF2U='x3-Z':'trapmf',[-0.9 -0.1 0.1 0.9 1]
+MF2L='mf2L':'gaussmf',[0.21235 0 0.5]
+MF3U='x3-P':'trapmf',[0.1 0.9 1.1 1.9 1]
+MF3L='mf3L':'gaussmf',[0.21235 1 0.5]
+
+[Output1]
+Name='output1'
+Range=[-1 1]
+NumMFs=3
+MF1='N':'constant',[-5 -5]
+MF2='Z':'constant',[0 0]
+MF3='P':'constant',[5 5]
+
+[Rules]
+1 1 1, 1 (1) : 1
+1 2 1, 3 (1) : 1
+1 1 2, 3 (1) : 1
+1 2 2, 2 (1) : 1

@@ -1,0 +1,38 @@
+%implements s0_b0_5egds_TLCInterface "C"
+
+%function getInputAddr_0_2_0_1_0_0(block, lcv, ucv, sigIdx, reim) void
+%<SLibCG_TrackParam(0)>
+
+%return "&Type2FuzzyLogicSystems_P.Input1_Value"
+%endfunction
+
+%function getInput_0_2_0_1_0_0(block, lcv, ucv, sigIdx, reim) void
+%<SLibCG_TrackParam(0)>
+
+%return "Type2FuzzyLogicSystems_P.Input1_Value"
+%endfunction
+
+%function getInputAddr_0_2_0_1_0_1(block, lcv, ucv, sigIdx, reim) void
+%<SLibCG_TrackParam(0)>
+
+%return "&Type2FuzzyLogicSystems_P.Input2_Value"
+%endfunction
+
+%function getInput_0_2_0_1_0_1(block, lcv, ucv, sigIdx, reim) void
+%<SLibCG_TrackParam(0)>
+
+%return "Type2FuzzyLogicSystems_P.Input2_Value"
+%endfunction
+
+%function getOutputAddr_0_2_0_1_0_0(block, lcv, ucv, sigIdx, reim) void
+%<SLibCGIRAccessLocalVar(0, 0)> %% rtb_t2fis
+
+%return "&rtb_t2fis"
+%endfunction
+
+%function getOutput_0_2_0_1_0_0(block, lcv, ucv, sigIdx, reim) void
+%<SLibCGIRAccessLocalVar(0, 0)> %% rtb_t2fis
+
+%return "rtb_t2fis"
+%endfunction
+

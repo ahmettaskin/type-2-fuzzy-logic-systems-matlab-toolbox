@@ -1,0 +1,73 @@
+[System]
+Name='Test4Input2'
+Type='sugeno'
+Version=2.0
+NumInputs=4
+NumOutputs=1
+NumRules=6
+AndMethod='prod'
+OrMethod='probor'
+ImpMethod='prod'
+AggMethod='sum'
+DefuzzMethod='wtaver'
+TypeRedMethod='Karnik-Mendel'
+
+[Input1]
+Name='input1'
+Range=[0 1]
+NumMFs=3
+MF1U='mf1U':'trimf',[-0.5 0 0.5 1]
+MF1L='mf1L':'trimf',[-0.5 0 0.5 1]
+MF2U='mf2U':'trimf',[0 0.5 1 1]
+MF2L='mf2L':'trimf',[0 0.5 1 1]
+MF3U='mf3U':'trimf',[0.5 1 1.5 1]
+MF3L='mf3L':'trimf',[0.5 1 1.5 1]
+
+[Input2]
+Name='input2'
+Range=[0 1]
+NumMFs=3
+MF1U='mf1U':'trimf',[-0.5 0 0.5 1]
+MF1L='mf1L':'trimf',[-0.5 0 0.5 1]
+MF2U='mf2U':'trimf',[0 0.5 1 1]
+MF2L='mf2L':'trimf',[0 0.5 1 1]
+MF3U='mf3U':'trimf',[0.5 1 1.5 1]
+MF3L='mf3L':'trimf',[0.5 1 1.5 1]
+
+[Input3]
+Name='input3'
+Range=[0 1]
+NumMFs=3
+MF1U='mf1U':'trimf',[-0.5 0 0.5 1]
+MF1L='mf1L':'trimf',[-0.5 0 0.5 1]
+MF2U='mf2U':'trimf',[0 0.5 1 1]
+MF2L='mf2L':'trimf',[0 0.5 1 1]
+MF3U='mf3U':'trimf',[0.5 1 1.5 1]
+MF3L='mf3L':'trimf',[0.5 1 1.5 1]
+
+[Input4]
+Name='input4'
+Range=[0 1]
+NumMFs=3
+MF1U='mf1U':'trimf',[-0.5 0 0.5 1]
+MF1L='mf1L':'trimf',[-0.5 0 0.5 1]
+MF2U='mf2U':'trimf',[0 0.5 1 1]
+MF2L='mf2L':'trimf',[0 0.5 1 1]
+MF3U='mf3U':'trimf',[0.5 1 1.5 1]
+MF3L='mf3L':'trimf',[0.5 1 1.5 1]
+
+[Output1]
+Name='output1'
+Range=[-1 1]
+NumMFs=3
+MF1='mf1':'constant',[-0.5345 -0.5345]
+MF2='mf2':'constant',[0.3223 0.3223]
+MF3='mf3':'constant',[0.4343 0.4343]
+
+[Rules]
+1 1 1 1, 1 (1) : 1
+2 2 3 2, 3 (1) : 1
+3 1 3 1, 2 (1) : 1
+2 2 1 3, 1 (1) : 1
+3 1 3 1, 3 (1) : 1
+2 3 2 2, 2 (1) : 1

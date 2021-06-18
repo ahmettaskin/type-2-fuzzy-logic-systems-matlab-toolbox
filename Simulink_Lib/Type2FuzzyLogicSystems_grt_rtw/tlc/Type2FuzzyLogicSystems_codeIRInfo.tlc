@@ -1,0 +1,30 @@
+%function FcnLoadCodeIRInfo() Output 
+codeIRInfoStruct = load('D:/IPC_Projects/Fuzzy_T2_Toolbox/Simulink_Lib/Type2FuzzyLogicSystems_grt_rtw/tlc/codeIRInfo.mat');
+codeInfo = codeIRInfoStruct.codeInfo;
+%endfunction
+
+%function FcnGetIsInheritedSampleTime() void
+%assign tmpIdx = 0
+%return tmpIdx 
+%endfunction
+
+%function FcnGetUnsetDSMIdxFromIRInfo() void
+%assign tmpIdx = []
+%return tmpIdx 
+%endfunction
+
+%function FcnGetUnsetEIIdxFromIRInfo() void
+%assign tmpIdx = []
+%return tmpIdx 
+%endfunction
+
+%function FcnGetUnsetEOIdxFromIRInfo() void
+%assign tmpIdx = []
+%return tmpIdx 
+%endfunction
+
+%function FcnGetUnsetParamIdxFromIRInfo() void
+%assign tmpIdx = []
+%return tmpIdx 
+%endfunction
+
